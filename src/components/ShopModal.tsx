@@ -23,7 +23,16 @@ interface ShopModalProps {
   onUpdateConfig: (newConfig: MascotConfig) => void;
 }
 
-type CategoryTab = 'bodyKey' | 'eyeKey' | 'mouthKey' | 'armKey' | 'legKey' | 'detailKey';
+type ShopCategory = 'bodies' | 'eyes' | 'mouths' | 'arms' | 'legs' | 'details';
+
+const CATEGORY_TO_CONFIG_KEY: Record<ShopCategory, keyof MascotConfig> = {
+  bodies: 'bodyKey',
+  eyes: 'eyeKey',
+  mouths: 'mouthKey',
+  arms: 'armKey',
+  legs: 'legKey',
+  details: 'detailKey',
+};
 
 export const ShopModal: React.FC<ShopModalProps> = ({
   visible,
@@ -36,30 +45,32 @@ export const ShopModal: React.FC<ShopModalProps> = ({
   currentConfig,
   onUpdateConfig,
 }) => {
-  const [selectedCategory, setSelectedCategory] = useState<CategoryTab>('bodyKey');
+  const [selectedCategory, setSelectedCategory] = useState<ShopCategory>('bodies');
   const [previewConfig, setPreviewConfig] = useState<MascotConfig>(currentConfig);
 
-  const categories: { key: CategoryTab; label: string; icon: string }[] = [
-    { key: 'bodyKey', label: 'Corpos', icon: '🟣' },
-    { key: 'eyeKey', label: 'Olhos', icon: '👀' },
-    { key: 'mouthKey', label: 'Bocas', icon: '👄' },
-    { key: 'armKey', label: 'Braços', icon: '💪' },
-    { key: 'legKey', label: 'Pernas', icon: '🦵' },
-    { key: 'detailKey', label: 'Acessórios', icon: '⚡' },
+  const categories: { key: ShopCategory; label: string; icon: string }[] = [
+    { key: 'bodies', label: 'Corpos', icon: '🟣' },
+    { key: 'eyes', label: 'Olhos', icon: '👀' },
+    { key: 'mouths', label: 'Bocas', icon: '👄' },
+    { key: 'arms', label: 'Braços', icon: '💪' },
+    { key: 'legs', label: 'Pernas', icon: '🦵' },
+    { key: 'details', label: 'Acessórios', icon: '⚡' },
   ];
 
   const filteredItems = SHOP_ITEMS.filter((item) => item.category === selectedCategory);
 
   const handleSelectToPreview = (item: ShopItem) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    const configKey = CATEGORY_TO_CONFIG_KEY[item.category];
+
     setPreviewConfig((prev) => ({
       ...prev,
-      [item.category]: item.itemKey,
+      [configKey]: item.partKey,
     }));
   };
 
   const handleBuy = (item: ShopItem) => {
-    const isLevelLocked = playerLevel < item.requiredLevel;
+    const isLevelLocked = playerLevel < item.levelRequired;
     const isAlreadyOwned = unlockedItemIds.includes(item.id) || item.price === 0;
 
     if (isAlreadyOwned) return;
@@ -71,11 +82,13 @@ export const ShopModal: React.FC<ShopModalProps> = ({
 
     if (stars >= item.price) {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      const configKey = CATEGORY_TO_CONFIG_KEY[item.category];
+
       onUpdateStars(stars - item.price);
       onUnlockItem(item.id);
       onUpdateConfig({
         ...currentConfig,
-        [item.category]: item.itemKey,
+        [configKey]: item.partKey,
       });
     } else {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Error);
@@ -108,11 +121,12 @@ export const ShopModal: React.FC<ShopModalProps> = ({
             </View>
           </View>
 
+          {/* Provador compacto para priorizar a visualização dos produtos */}
           <View style={styles.previewBox}>
             <View style={styles.previewTag}>
               <Text style={styles.previewTagText}>Provador Virtual</Text>
             </View>
-            <Mascot config={previewConfig} scaleFactor={0.65} />
+            <Mascot config={previewConfig} scaleFactor={0.42} />
           </View>
 
           <ScrollView
@@ -137,12 +151,16 @@ export const ShopModal: React.FC<ShopModalProps> = ({
             ))}
           </ScrollView>
 
-          <ScrollView contentContainerStyle={styles.grid} showsVerticalScrollIndicator={false}>
+          <ScrollView 
+            contentContainerStyle={styles.grid} 
+            showsVerticalScrollIndicator={false}
+          >
             {filteredItems.map((item) => {
+              const configKey = CATEGORY_TO_CONFIG_KEY[item.category];
               const isOwned = unlockedItemIds.includes(item.id) || item.price === 0;
-              const isLevelLocked = playerLevel < item.requiredLevel;
+              const isLevelLocked = playerLevel < item.levelRequired;
               const canAfford = stars >= item.price;
-              const isTestingInPreview = previewConfig[item.category] === item.itemKey;
+              const isTestingInPreview = previewConfig[configKey] === item.partKey;
 
               return (
                 <TouchableOpacity
@@ -165,7 +183,7 @@ export const ShopModal: React.FC<ShopModalProps> = ({
                     </View>
                   ) : isLevelLocked ? (
                     <View style={styles.lockedBadge}>
-                      <Text style={styles.lockedText}>🔒 Nível {item.requiredLevel}</Text>
+                      <Text style={styles.lockedText}>🔒 Nível {item.levelRequired}</Text>
                     </View>
                   ) : (
                     <TouchableOpacity
@@ -189,7 +207,7 @@ export const ShopModal: React.FC<ShopModalProps> = ({
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(50, 36, 26, 0.65)',
+    backgroundColor: 'rgba(15, 10, 8, 0.85)',
     justifyContent: 'flex-end',
   },
   container: {
@@ -198,14 +216,17 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 32,
     borderWidth: 4,
     borderColor: '#4A3525',
-    maxHeight: '90%',
-    padding: 16,
+    maxHeight: '94%',
+    height: '92%',
+    paddingHorizontal: 16,
+    paddingTop: 14,
+    paddingBottom: 20,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: 6,
   },
   title: {
     fontSize: 20,
@@ -251,36 +272,37 @@ const styles = StyleSheet.create({
     color: '#4A3525',
   },
   previewBox: {
-    height: 180,
+    height: 135,
     backgroundColor: '#EFE5D8',
-    borderRadius: 20,
+    borderRadius: 18,
     borderWidth: 2,
     borderColor: '#D9C8B4',
     alignItems: 'center',
     justifyContent: 'center',
-    marginVertical: 6,
+    marginVertical: 4,
     overflow: 'hidden',
   },
   previewTag: {
     position: 'absolute',
-    top: 8,
-    left: 10,
+    top: 6,
+    left: 8,
     backgroundColor: '#FAF5EE',
     paddingHorizontal: 8,
-    paddingVertical: 3,
+    paddingVertical: 2,
     borderRadius: 8,
     borderWidth: 1,
     borderColor: '#D9C8B4',
+    zIndex: 20,
   },
   previewTagText: {
-    fontSize: 10,
+    fontSize: 9,
     fontWeight: '800',
     color: '#7C6758',
   },
   tabsRow: {
     gap: 6,
-    marginVertical: 10,
-    height: 42,
+    marginVertical: 8,
+    height: 38,
   },
   tab: {
     flexDirection: 'row',
@@ -288,7 +310,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#FFFFFF',
     paddingHorizontal: 12,
-    paddingVertical: 6,
+    paddingVertical: 4,
     borderRadius: 12,
     borderWidth: 2,
     borderColor: '#D9C8B4',
@@ -299,7 +321,7 @@ const styles = StyleSheet.create({
     borderColor: '#4A3525',
   },
   tabIcon: {
-    fontSize: 13,
+    fontSize: 12,
   },
   tabText: {
     fontSize: 11,
@@ -313,7 +335,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     gap: 10,
-    paddingBottom: 24,
+    paddingBottom: 32,
   },
   itemCard: {
     width: '48%',
@@ -324,7 +346,7 @@ const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     justifyContent: 'space-between',
-    minHeight: 95,
+    minHeight: 90,
   },
   itemCardTesting: {
     borderColor: '#E07A5F',

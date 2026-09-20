@@ -1,0 +1,3276 @@
+{
+    "corpos": {
+        "body_darkB.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 379,
+                    "y": 193
+                },
+                "bracoE": {
+                    "x": 4,
+                    "y": 193
+                },
+                "pernaD": {
+                    "x": 269,
+                    "y": 361
+                },
+                "pernaE": {
+                    "x": 118,
+                    "y": 361
+                },
+                "boca": {
+                    "x": 193,
+                    "y": 287
+                },
+                "nariz": {
+                    "x": 193,
+                    "y": 203
+                },
+                "olhoD": {
+                    "x": 282,
+                    "y": 129
+                },
+                "olhoE": {
+                    "x": 100,
+                    "y": 129
+                },
+                "orelhaD": {
+                    "x": 342,
+                    "y": 89
+                },
+                "orelhaE": {
+                    "x": 48,
+                    "y": 89
+                },
+                "detalheE": {
+                    "x": 126,
+                    "y": 30
+                },
+                "detalheD": {
+                    "x": 250,
+                    "y": 30
+                }
+            }
+        },
+        "body_greenB.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 379,
+                    "y": 193
+                },
+                "bracoE": {
+                    "x": 4,
+                    "y": 193
+                },
+                "pernaD": {
+                    "x": 269,
+                    "y": 361
+                },
+                "pernaE": {
+                    "x": 118,
+                    "y": 361
+                },
+                "boca": {
+                    "x": 193,
+                    "y": 287
+                },
+                "nariz": {
+                    "x": 193,
+                    "y": 203
+                },
+                "olhoD": {
+                    "x": 282,
+                    "y": 129
+                },
+                "olhoE": {
+                    "x": 100,
+                    "y": 129
+                },
+                "orelhaD": {
+                    "x": 342,
+                    "y": 89
+                },
+                "orelhaE": {
+                    "x": 48,
+                    "y": 89
+                },
+                "detalheE": {
+                    "x": 126,
+                    "y": 30
+                },
+                "detalheD": {
+                    "x": 250,
+                    "y": 30
+                }
+            }
+        },
+        "body_darkE.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 249,
+                    "y": 231
+                },
+                "bracoE": {
+                    "x": 13,
+                    "y": 231
+                },
+                "boca": {
+                    "x": 132,
+                    "y": 379
+                },
+                "nariz": {
+                    "x": 132,
+                    "y": 291
+                },
+                "olhoD": {
+                    "x": 192,
+                    "y": 148
+                },
+                "olhoE": {
+                    "x": 77,
+                    "y": 152
+                },
+                "orelhaD": {
+                    "x": 243,
+                    "y": 115
+                },
+                "orelhaE": {
+                    "x": 18,
+                    "y": 115
+                },
+                "detalheD": {
+                    "x": 203,
+                    "y": 37
+                },
+                "detalheE": {
+                    "x": 55,
+                    "y": 37
+                },
+                "pernaD": {
+                    "x": 203,
+                    "y": 475
+                },
+                "pernaE": {
+                    "x": 64,
+                    "y": 475
+                }
+            }
+        },
+        "body_blueD.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 338,
+                    "y": 195
+                },
+                "bracoE": {
+                    "x": 8,
+                    "y": 195
+                },
+                "boca": {
+                    "x": 175,
+                    "y": 263
+                },
+                "nariz": {
+                    "x": 172,
+                    "y": 203
+                },
+                "olhoD": {
+                    "x": 244,
+                    "y": 143
+                },
+                "olhoE": {
+                    "x": 101,
+                    "y": 143
+                },
+                "orelhaD": {
+                    "x": 314,
+                    "y": 99
+                },
+                "orelhaE": {
+                    "x": 33,
+                    "y": 99
+                },
+                "detalheD": {
+                    "x": 259,
+                    "y": 37
+                },
+                "detalheE": {
+                    "x": 86,
+                    "y": 37
+                },
+                "pernaD": {
+                    "x": 255,
+                    "y": 337
+                },
+                "pernaE": {
+                    "x": 96,
+                    "y": 337
+                }
+            }
+        },
+        "body_redB.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 379,
+                    "y": 193
+                },
+                "bracoE": {
+                    "x": 4,
+                    "y": 193
+                },
+                "pernaD": {
+                    "x": 269,
+                    "y": 361
+                },
+                "pernaE": {
+                    "x": 118,
+                    "y": 361
+                },
+                "boca": {
+                    "x": 193,
+                    "y": 287
+                },
+                "nariz": {
+                    "x": 193,
+                    "y": 203
+                },
+                "olhoD": {
+                    "x": 282,
+                    "y": 129
+                },
+                "olhoE": {
+                    "x": 100,
+                    "y": 129
+                },
+                "orelhaD": {
+                    "x": 342,
+                    "y": 89
+                },
+                "orelhaE": {
+                    "x": 48,
+                    "y": 89
+                },
+                "detalheE": {
+                    "x": 126,
+                    "y": 30
+                },
+                "detalheD": {
+                    "x": 250,
+                    "y": 30
+                }
+            }
+        },
+        "body_greenE.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 249,
+                    "y": 231
+                },
+                "bracoE": {
+                    "x": 13,
+                    "y": 231
+                },
+                "boca": {
+                    "x": 132,
+                    "y": 379
+                },
+                "nariz": {
+                    "x": 132,
+                    "y": 291
+                },
+                "olhoD": {
+                    "x": 192,
+                    "y": 148
+                },
+                "olhoE": {
+                    "x": 77,
+                    "y": 152
+                },
+                "orelhaD": {
+                    "x": 243,
+                    "y": 115
+                },
+                "orelhaE": {
+                    "x": 18,
+                    "y": 115
+                },
+                "detalheD": {
+                    "x": 203,
+                    "y": 37
+                },
+                "detalheE": {
+                    "x": 55,
+                    "y": 37
+                },
+                "pernaD": {
+                    "x": 203,
+                    "y": 475
+                },
+                "pernaE": {
+                    "x": 64,
+                    "y": 475
+                }
+            }
+        },
+        "body_darkA.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 320,
+                    "y": 195
+                },
+                "bracoE": {
+                    "x": 5,
+                    "y": 195
+                },
+                "boca": {
+                    "x": 175,
+                    "y": 268
+                },
+                "nariz": {
+                    "x": 172,
+                    "y": 204
+                },
+                "olhoD": {
+                    "x": 244,
+                    "y": 134
+                },
+                "olhoE": {
+                    "x": 101,
+                    "y": 134
+                },
+                "orelhaD": {
+                    "x": 324,
+                    "y": 99
+                },
+                "orelhaE": {
+                    "x": 6,
+                    "y": 99
+                },
+                "detalheD": {
+                    "x": 245,
+                    "y": 23
+                },
+                "detalheE": {
+                    "x": 86,
+                    "y": 23
+                },
+                "pernaD": {
+                    "x": 255,
+                    "y": 320
+                },
+                "pernaE": {
+                    "x": 79,
+                    "y": 320
+                }
+            }
+        },
+        "body_blueB.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 379,
+                    "y": 193
+                },
+                "bracoE": {
+                    "x": 4,
+                    "y": 193
+                },
+                "pernaD": {
+                    "x": 269,
+                    "y": 361
+                },
+                "pernaE": {
+                    "x": 118,
+                    "y": 361
+                },
+                "boca": {
+                    "x": 193,
+                    "y": 287
+                },
+                "nariz": {
+                    "x": 193,
+                    "y": 203
+                },
+                "olhoD": {
+                    "x": 282,
+                    "y": 129
+                },
+                "olhoE": {
+                    "x": 100,
+                    "y": 129
+                },
+                "orelhaD": {
+                    "x": 342,
+                    "y": 89
+                },
+                "orelhaE": {
+                    "x": 48,
+                    "y": 89
+                },
+                "detalheE": {
+                    "x": 126,
+                    "y": 30
+                },
+                "detalheD": {
+                    "x": 250,
+                    "y": 30
+                }
+            }
+        },
+        "body_darkD.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 338,
+                    "y": 195
+                },
+                "bracoE": {
+                    "x": 8,
+                    "y": 195
+                },
+                "boca": {
+                    "x": 175,
+                    "y": 263
+                },
+                "nariz": {
+                    "x": 172,
+                    "y": 203
+                },
+                "olhoD": {
+                    "x": 244,
+                    "y": 143
+                },
+                "olhoE": {
+                    "x": 101,
+                    "y": 143
+                },
+                "orelhaD": {
+                    "x": 314,
+                    "y": 99
+                },
+                "orelhaE": {
+                    "x": 33,
+                    "y": 99
+                },
+                "detalheD": {
+                    "x": 259,
+                    "y": 37
+                },
+                "detalheE": {
+                    "x": 86,
+                    "y": 37
+                },
+                "pernaD": {
+                    "x": 255,
+                    "y": 337
+                },
+                "pernaE": {
+                    "x": 96,
+                    "y": 337
+                }
+            }
+        },
+        "body_blueF.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 297,
+                    "y": 231
+                },
+                "bracoE": {
+                    "x": 38,
+                    "y": 231
+                },
+                "boca": {
+                    "x": 176,
+                    "y": 379
+                },
+                "nariz": {
+                    "x": 176,
+                    "y": 282
+                },
+                "olhoD": {
+                    "x": 248,
+                    "y": 160
+                },
+                "olhoE": {
+                    "x": 102,
+                    "y": 160
+                },
+                "orelhaD": {
+                    "x": 293,
+                    "y": 115
+                },
+                "orelhaE": {
+                    "x": 40,
+                    "y": 115
+                },
+                "detalheD": {
+                    "x": 217,
+                    "y": 39
+                },
+                "detalheE": {
+                    "x": 125,
+                    "y": 39
+                },
+                "pernaD": {
+                    "x": 229,
+                    "y": 450
+                },
+                "pernaE": {
+                    "x": 109,
+                    "y": 450
+                }
+            }
+        },
+        "body_redA.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 320,
+                    "y": 195
+                },
+                "bracoE": {
+                    "x": 5,
+                    "y": 195
+                },
+                "boca": {
+                    "x": 175,
+                    "y": 268
+                },
+                "nariz": {
+                    "x": 172,
+                    "y": 204
+                },
+                "olhoD": {
+                    "x": 244,
+                    "y": 134
+                },
+                "olhoE": {
+                    "x": 101,
+                    "y": 134
+                },
+                "orelhaD": {
+                    "x": 324,
+                    "y": 99
+                },
+                "orelhaE": {
+                    "x": 6,
+                    "y": 99
+                },
+                "detalheD": {
+                    "x": 245,
+                    "y": 23
+                },
+                "detalheE": {
+                    "x": 86,
+                    "y": 23
+                },
+                "pernaD": {
+                    "x": 255,
+                    "y": 320
+                },
+                "pernaE": {
+                    "x": 79,
+                    "y": 320
+                }
+            }
+        },
+        "body_darkC.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 278,
+                    "y": 193
+                },
+                "bracoE": {
+                    "x": 7,
+                    "y": 193
+                },
+                "pernaD": {
+                    "x": 193,
+                    "y": 361
+                },
+                "pernaE": {
+                    "x": 88,
+                    "y": 361
+                },
+                "boca": {
+                    "x": 140,
+                    "y": 287
+                },
+                "nariz": {
+                    "x": 138,
+                    "y": 206
+                },
+                "olhoD": {
+                    "x": 209,
+                    "y": 129
+                },
+                "olhoE": {
+                    "x": 75,
+                    "y": 129
+                },
+                "orelhaD": {
+                    "x": 265,
+                    "y": 89
+                },
+                "orelhaE": {
+                    "x": 23,
+                    "y": 89
+                },
+                "detalheE": {
+                    "x": 88,
+                    "y": 30
+                },
+                "detalheD": {
+                    "x": 191,
+                    "y": 30
+                }
+            }
+        },
+        "body_greenA.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 320,
+                    "y": 195
+                },
+                "bracoE": {
+                    "x": 5,
+                    "y": 195
+                },
+                "boca": {
+                    "x": 175,
+                    "y": 268
+                },
+                "nariz": {
+                    "x": 172,
+                    "y": 204
+                },
+                "olhoD": {
+                    "x": 244,
+                    "y": 134
+                },
+                "olhoE": {
+                    "x": 101,
+                    "y": 134
+                },
+                "orelhaD": {
+                    "x": 324,
+                    "y": 99
+                },
+                "orelhaE": {
+                    "x": 6,
+                    "y": 99
+                },
+                "detalheD": {
+                    "x": 245,
+                    "y": 23
+                },
+                "detalheE": {
+                    "x": 86,
+                    "y": 23
+                },
+                "pernaD": {
+                    "x": 255,
+                    "y": 320
+                },
+                "pernaE": {
+                    "x": 79,
+                    "y": 320
+                }
+            }
+        },
+        "body_greenC.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 278,
+                    "y": 193
+                },
+                "bracoE": {
+                    "x": 7,
+                    "y": 193
+                },
+                "pernaD": {
+                    "x": 193,
+                    "y": 361
+                },
+                "pernaE": {
+                    "x": 88,
+                    "y": 361
+                },
+                "boca": {
+                    "x": 140,
+                    "y": 287
+                },
+                "nariz": {
+                    "x": 138,
+                    "y": 206
+                },
+                "olhoD": {
+                    "x": 209,
+                    "y": 129
+                },
+                "olhoE": {
+                    "x": 75,
+                    "y": 129
+                },
+                "orelhaD": {
+                    "x": 265,
+                    "y": 89
+                },
+                "orelhaE": {
+                    "x": 23,
+                    "y": 89
+                },
+                "detalheE": {
+                    "x": 88,
+                    "y": 30
+                },
+                "detalheD": {
+                    "x": 191,
+                    "y": 30
+                }
+            }
+        },
+        "body_greenF.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 297,
+                    "y": 231
+                },
+                "bracoE": {
+                    "x": 38,
+                    "y": 231
+                },
+                "boca": {
+                    "x": 176,
+                    "y": 379
+                },
+                "nariz": {
+                    "x": 176,
+                    "y": 282
+                },
+                "olhoD": {
+                    "x": 248,
+                    "y": 160
+                },
+                "olhoE": {
+                    "x": 102,
+                    "y": 160
+                },
+                "orelhaD": {
+                    "x": 293,
+                    "y": 115
+                },
+                "orelhaE": {
+                    "x": 40,
+                    "y": 115
+                },
+                "detalheD": {
+                    "x": 217,
+                    "y": 39
+                },
+                "detalheE": {
+                    "x": 125,
+                    "y": 39
+                },
+                "pernaD": {
+                    "x": 229,
+                    "y": 450
+                },
+                "pernaE": {
+                    "x": 109,
+                    "y": 450
+                }
+            }
+        },
+        "body_blueC.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 278,
+                    "y": 193
+                },
+                "bracoE": {
+                    "x": 7,
+                    "y": 193
+                },
+                "pernaD": {
+                    "x": 193,
+                    "y": 361
+                },
+                "pernaE": {
+                    "x": 88,
+                    "y": 361
+                },
+                "boca": {
+                    "x": 140,
+                    "y": 287
+                },
+                "nariz": {
+                    "x": 138,
+                    "y": 206
+                },
+                "olhoD": {
+                    "x": 209,
+                    "y": 129
+                },
+                "olhoE": {
+                    "x": 75,
+                    "y": 129
+                },
+                "orelhaD": {
+                    "x": 265,
+                    "y": 89
+                },
+                "orelhaE": {
+                    "x": 23,
+                    "y": 89
+                },
+                "detalheE": {
+                    "x": 88,
+                    "y": 30
+                },
+                "detalheD": {
+                    "x": 191,
+                    "y": 30
+                }
+            }
+        },
+        "body_blueE.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 249,
+                    "y": 231
+                },
+                "bracoE": {
+                    "x": 13,
+                    "y": 231
+                },
+                "boca": {
+                    "x": 132,
+                    "y": 379
+                },
+                "nariz": {
+                    "x": 132,
+                    "y": 291
+                },
+                "olhoD": {
+                    "x": 192,
+                    "y": 148
+                },
+                "olhoE": {
+                    "x": 77,
+                    "y": 152
+                },
+                "orelhaD": {
+                    "x": 243,
+                    "y": 115
+                },
+                "orelhaE": {
+                    "x": 18,
+                    "y": 115
+                },
+                "detalheD": {
+                    "x": 203,
+                    "y": 37
+                },
+                "detalheE": {
+                    "x": 55,
+                    "y": 37
+                },
+                "pernaD": {
+                    "x": 203,
+                    "y": 475
+                },
+                "pernaE": {
+                    "x": 64,
+                    "y": 475
+                }
+            }
+        },
+        "body_blueA.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 320,
+                    "y": 195
+                },
+                "bracoE": {
+                    "x": 5,
+                    "y": 195
+                },
+                "boca": {
+                    "x": 175,
+                    "y": 268
+                },
+                "nariz": {
+                    "x": 172,
+                    "y": 204
+                },
+                "olhoD": {
+                    "x": 244,
+                    "y": 134
+                },
+                "olhoE": {
+                    "x": 101,
+                    "y": 134
+                },
+                "orelhaD": {
+                    "x": 324,
+                    "y": 99
+                },
+                "orelhaE": {
+                    "x": 6,
+                    "y": 99
+                },
+                "detalheD": {
+                    "x": 245,
+                    "y": 23
+                },
+                "detalheE": {
+                    "x": 86,
+                    "y": 23
+                },
+                "pernaD": {
+                    "x": 255,
+                    "y": 320
+                },
+                "pernaE": {
+                    "x": 79,
+                    "y": 320
+                }
+            }
+        },
+        "body_greenD.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 338,
+                    "y": 195
+                },
+                "bracoE": {
+                    "x": 8,
+                    "y": 195
+                },
+                "boca": {
+                    "x": 175,
+                    "y": 263
+                },
+                "nariz": {
+                    "x": 172,
+                    "y": 203
+                },
+                "olhoD": {
+                    "x": 244,
+                    "y": 143
+                },
+                "olhoE": {
+                    "x": 101,
+                    "y": 143
+                },
+                "orelhaD": {
+                    "x": 314,
+                    "y": 99
+                },
+                "orelhaE": {
+                    "x": 33,
+                    "y": 99
+                },
+                "detalheD": {
+                    "x": 259,
+                    "y": 37
+                },
+                "detalheE": {
+                    "x": 86,
+                    "y": 37
+                },
+                "pernaD": {
+                    "x": 255,
+                    "y": 337
+                },
+                "pernaE": {
+                    "x": 96,
+                    "y": 337
+                }
+            }
+        },
+        "body_darkF.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 297,
+                    "y": 231
+                },
+                "bracoE": {
+                    "x": 38,
+                    "y": 231
+                },
+                "boca": {
+                    "x": 176,
+                    "y": 379
+                },
+                "nariz": {
+                    "x": 176,
+                    "y": 282
+                },
+                "olhoD": {
+                    "x": 248,
+                    "y": 160
+                },
+                "olhoE": {
+                    "x": 102,
+                    "y": 160
+                },
+                "orelhaD": {
+                    "x": 293,
+                    "y": 115
+                },
+                "orelhaE": {
+                    "x": 40,
+                    "y": 115
+                },
+                "detalheD": {
+                    "x": 217,
+                    "y": 39
+                },
+                "detalheE": {
+                    "x": 125,
+                    "y": 39
+                },
+                "pernaD": {
+                    "x": 229,
+                    "y": 450
+                },
+                "pernaE": {
+                    "x": 109,
+                    "y": 450
+                }
+            }
+        },
+        "body_redF.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 297,
+                    "y": 231
+                },
+                "bracoE": {
+                    "x": 38,
+                    "y": 231
+                },
+                "boca": {
+                    "x": 176,
+                    "y": 379
+                },
+                "nariz": {
+                    "x": 176,
+                    "y": 282
+                },
+                "olhoD": {
+                    "x": 248,
+                    "y": 160
+                },
+                "olhoE": {
+                    "x": 102,
+                    "y": 160
+                },
+                "orelhaD": {
+                    "x": 293,
+                    "y": 115
+                },
+                "orelhaE": {
+                    "x": 40,
+                    "y": 115
+                },
+                "detalheD": {
+                    "x": 217,
+                    "y": 39
+                },
+                "detalheE": {
+                    "x": 125,
+                    "y": 39
+                },
+                "pernaD": {
+                    "x": 229,
+                    "y": 450
+                },
+                "pernaE": {
+                    "x": 109,
+                    "y": 450
+                }
+            }
+        },
+        "body_redC.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 278,
+                    "y": 193
+                },
+                "bracoE": {
+                    "x": 7,
+                    "y": 193
+                },
+                "pernaD": {
+                    "x": 193,
+                    "y": 361
+                },
+                "pernaE": {
+                    "x": 88,
+                    "y": 361
+                },
+                "boca": {
+                    "x": 140,
+                    "y": 287
+                },
+                "nariz": {
+                    "x": 138,
+                    "y": 206
+                },
+                "olhoD": {
+                    "x": 209,
+                    "y": 129
+                },
+                "olhoE": {
+                    "x": 75,
+                    "y": 129
+                },
+                "orelhaD": {
+                    "x": 265,
+                    "y": 89
+                },
+                "orelhaE": {
+                    "x": 23,
+                    "y": 89
+                },
+                "detalheE": {
+                    "x": 88,
+                    "y": 30
+                },
+                "detalheD": {
+                    "x": 191,
+                    "y": 30
+                }
+            }
+        },
+        "body_whiteA.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 320,
+                    "y": 195
+                },
+                "bracoE": {
+                    "x": 5,
+                    "y": 195
+                },
+                "boca": {
+                    "x": 175,
+                    "y": 268
+                },
+                "nariz": {
+                    "x": 172,
+                    "y": 204
+                },
+                "olhoD": {
+                    "x": 244,
+                    "y": 134
+                },
+                "olhoE": {
+                    "x": 101,
+                    "y": 134
+                },
+                "orelhaD": {
+                    "x": 324,
+                    "y": 99
+                },
+                "orelhaE": {
+                    "x": 6,
+                    "y": 99
+                },
+                "detalheD": {
+                    "x": 245,
+                    "y": 23
+                },
+                "detalheE": {
+                    "x": 86,
+                    "y": 23
+                },
+                "pernaD": {
+                    "x": 255,
+                    "y": 320
+                },
+                "pernaE": {
+                    "x": 79,
+                    "y": 320
+                }
+            }
+        },
+        "body_yellowE.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 249,
+                    "y": 231
+                },
+                "bracoE": {
+                    "x": 13,
+                    "y": 231
+                },
+                "boca": {
+                    "x": 132,
+                    "y": 379
+                },
+                "nariz": {
+                    "x": 132,
+                    "y": 291
+                },
+                "olhoD": {
+                    "x": 192,
+                    "y": 148
+                },
+                "olhoE": {
+                    "x": 77,
+                    "y": 152
+                },
+                "orelhaD": {
+                    "x": 243,
+                    "y": 115
+                },
+                "orelhaE": {
+                    "x": 18,
+                    "y": 115
+                },
+                "detalheD": {
+                    "x": 203,
+                    "y": 37
+                },
+                "detalheE": {
+                    "x": 55,
+                    "y": 37
+                },
+                "pernaD": {
+                    "x": 203,
+                    "y": 475
+                },
+                "pernaE": {
+                    "x": 64,
+                    "y": 475
+                }
+            }
+        },
+        "body_whiteB.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 379,
+                    "y": 193
+                },
+                "bracoE": {
+                    "x": 4,
+                    "y": 193
+                },
+                "pernaD": {
+                    "x": 269,
+                    "y": 361
+                },
+                "pernaE": {
+                    "x": 118,
+                    "y": 361
+                },
+                "boca": {
+                    "x": 193,
+                    "y": 287
+                },
+                "nariz": {
+                    "x": 193,
+                    "y": 203
+                },
+                "olhoD": {
+                    "x": 282,
+                    "y": 129
+                },
+                "olhoE": {
+                    "x": 100,
+                    "y": 129
+                },
+                "orelhaD": {
+                    "x": 342,
+                    "y": 89
+                },
+                "orelhaE": {
+                    "x": 48,
+                    "y": 89
+                },
+                "detalheE": {
+                    "x": 126,
+                    "y": 30
+                },
+                "detalheD": {
+                    "x": 250,
+                    "y": 30
+                }
+            }
+        },
+        "body_redE.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 249,
+                    "y": 231
+                },
+                "bracoE": {
+                    "x": 13,
+                    "y": 231
+                },
+                "boca": {
+                    "x": 132,
+                    "y": 379
+                },
+                "nariz": {
+                    "x": 132,
+                    "y": 291
+                },
+                "olhoD": {
+                    "x": 192,
+                    "y": 148
+                },
+                "olhoE": {
+                    "x": 77,
+                    "y": 152
+                },
+                "orelhaD": {
+                    "x": 243,
+                    "y": 115
+                },
+                "orelhaE": {
+                    "x": 18,
+                    "y": 115
+                },
+                "detalheD": {
+                    "x": 203,
+                    "y": 37
+                },
+                "detalheE": {
+                    "x": 55,
+                    "y": 37
+                },
+                "pernaD": {
+                    "x": 203,
+                    "y": 475
+                },
+                "pernaE": {
+                    "x": 64,
+                    "y": 475
+                }
+            }
+        },
+        "body_whiteE.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 249,
+                    "y": 231
+                },
+                "bracoE": {
+                    "x": 13,
+                    "y": 231
+                },
+                "boca": {
+                    "x": 132,
+                    "y": 379
+                },
+                "nariz": {
+                    "x": 132,
+                    "y": 291
+                },
+                "olhoD": {
+                    "x": 192,
+                    "y": 148
+                },
+                "olhoE": {
+                    "x": 77,
+                    "y": 152
+                },
+                "orelhaD": {
+                    "x": 243,
+                    "y": 115
+                },
+                "orelhaE": {
+                    "x": 18,
+                    "y": 115
+                },
+                "detalheD": {
+                    "x": 203,
+                    "y": 37
+                },
+                "detalheE": {
+                    "x": 55,
+                    "y": 37
+                },
+                "pernaD": {
+                    "x": 203,
+                    "y": 475
+                },
+                "pernaE": {
+                    "x": 64,
+                    "y": 475
+                }
+            }
+        },
+        "body_yellowD.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 338,
+                    "y": 195
+                },
+                "bracoE": {
+                    "x": 8,
+                    "y": 195
+                },
+                "boca": {
+                    "x": 175,
+                    "y": 263
+                },
+                "nariz": {
+                    "x": 172,
+                    "y": 203
+                },
+                "olhoD": {
+                    "x": 244,
+                    "y": 143
+                },
+                "olhoE": {
+                    "x": 101,
+                    "y": 143
+                },
+                "orelhaD": {
+                    "x": 314,
+                    "y": 99
+                },
+                "orelhaE": {
+                    "x": 33,
+                    "y": 99
+                },
+                "detalheD": {
+                    "x": 259,
+                    "y": 37
+                },
+                "detalheE": {
+                    "x": 86,
+                    "y": 37
+                },
+                "pernaD": {
+                    "x": 255,
+                    "y": 337
+                },
+                "pernaE": {
+                    "x": 96,
+                    "y": 337
+                }
+            }
+        },
+        "body_yellowC.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 278,
+                    "y": 193
+                },
+                "bracoE": {
+                    "x": 7,
+                    "y": 193
+                },
+                "pernaD": {
+                    "x": 193,
+                    "y": 361
+                },
+                "pernaE": {
+                    "x": 88,
+                    "y": 361
+                },
+                "boca": {
+                    "x": 140,
+                    "y": 287
+                },
+                "nariz": {
+                    "x": 138,
+                    "y": 206
+                },
+                "olhoD": {
+                    "x": 209,
+                    "y": 129
+                },
+                "olhoE": {
+                    "x": 75,
+                    "y": 129
+                },
+                "orelhaD": {
+                    "x": 265,
+                    "y": 89
+                },
+                "orelhaE": {
+                    "x": 23,
+                    "y": 89
+                },
+                "detalheE": {
+                    "x": 88,
+                    "y": 30
+                },
+                "detalheD": {
+                    "x": 191,
+                    "y": 30
+                }
+            }
+        },
+        "body_whiteC.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 278,
+                    "y": 193
+                },
+                "bracoE": {
+                    "x": 7,
+                    "y": 193
+                },
+                "pernaD": {
+                    "x": 193,
+                    "y": 361
+                },
+                "pernaE": {
+                    "x": 88,
+                    "y": 361
+                },
+                "boca": {
+                    "x": 140,
+                    "y": 287
+                },
+                "nariz": {
+                    "x": 138,
+                    "y": 206
+                },
+                "olhoD": {
+                    "x": 209,
+                    "y": 129
+                },
+                "olhoE": {
+                    "x": 75,
+                    "y": 129
+                },
+                "orelhaD": {
+                    "x": 265,
+                    "y": 89
+                },
+                "orelhaE": {
+                    "x": 23,
+                    "y": 89
+                },
+                "detalheE": {
+                    "x": 88,
+                    "y": 30
+                },
+                "detalheD": {
+                    "x": 191,
+                    "y": 30
+                }
+            }
+        },
+        "body_yellowA.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 320,
+                    "y": 195
+                },
+                "bracoE": {
+                    "x": 5,
+                    "y": 195
+                },
+                "boca": {
+                    "x": 175,
+                    "y": 268
+                },
+                "nariz": {
+                    "x": 172,
+                    "y": 204
+                },
+                "olhoD": {
+                    "x": 244,
+                    "y": 134
+                },
+                "olhoE": {
+                    "x": 101,
+                    "y": 134
+                },
+                "orelhaD": {
+                    "x": 324,
+                    "y": 99
+                },
+                "orelhaE": {
+                    "x": 6,
+                    "y": 99
+                },
+                "detalheD": {
+                    "x": 245,
+                    "y": 23
+                },
+                "detalheE": {
+                    "x": 86,
+                    "y": 23
+                },
+                "pernaD": {
+                    "x": 255,
+                    "y": 320
+                },
+                "pernaE": {
+                    "x": 79,
+                    "y": 320
+                }
+            }
+        },
+        "body_yellowF.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 297,
+                    "y": 231
+                },
+                "bracoE": {
+                    "x": 38,
+                    "y": 231
+                },
+                "boca": {
+                    "x": 176,
+                    "y": 379
+                },
+                "nariz": {
+                    "x": 176,
+                    "y": 282
+                },
+                "olhoD": {
+                    "x": 248,
+                    "y": 160
+                },
+                "olhoE": {
+                    "x": 102,
+                    "y": 160
+                },
+                "orelhaD": {
+                    "x": 293,
+                    "y": 115
+                },
+                "orelhaE": {
+                    "x": 40,
+                    "y": 115
+                },
+                "detalheD": {
+                    "x": 217,
+                    "y": 39
+                },
+                "detalheE": {
+                    "x": 125,
+                    "y": 39
+                },
+                "pernaD": {
+                    "x": 229,
+                    "y": 450
+                },
+                "pernaE": {
+                    "x": 109,
+                    "y": 450
+                }
+            }
+        },
+        "body_whiteD.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 338,
+                    "y": 195
+                },
+                "bracoE": {
+                    "x": 8,
+                    "y": 195
+                },
+                "boca": {
+                    "x": 175,
+                    "y": 263
+                },
+                "nariz": {
+                    "x": 172,
+                    "y": 203
+                },
+                "olhoD": {
+                    "x": 244,
+                    "y": 143
+                },
+                "olhoE": {
+                    "x": 101,
+                    "y": 143
+                },
+                "orelhaD": {
+                    "x": 314,
+                    "y": 99
+                },
+                "orelhaE": {
+                    "x": 33,
+                    "y": 99
+                },
+                "detalheD": {
+                    "x": 259,
+                    "y": 37
+                },
+                "detalheE": {
+                    "x": 86,
+                    "y": 37
+                },
+                "pernaD": {
+                    "x": 255,
+                    "y": 337
+                },
+                "pernaE": {
+                    "x": 96,
+                    "y": 337
+                }
+            }
+        },
+        "body_yellowB.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 379,
+                    "y": 193
+                },
+                "bracoE": {
+                    "x": 4,
+                    "y": 193
+                },
+                "pernaD": {
+                    "x": 269,
+                    "y": 361
+                },
+                "pernaE": {
+                    "x": 118,
+                    "y": 361
+                },
+                "boca": {
+                    "x": 193,
+                    "y": 287
+                },
+                "nariz": {
+                    "x": 193,
+                    "y": 203
+                },
+                "olhoD": {
+                    "x": 282,
+                    "y": 129
+                },
+                "olhoE": {
+                    "x": 100,
+                    "y": 129
+                },
+                "orelhaD": {
+                    "x": 342,
+                    "y": 89
+                },
+                "orelhaE": {
+                    "x": 48,
+                    "y": 89
+                },
+                "detalheE": {
+                    "x": 126,
+                    "y": 30
+                },
+                "detalheD": {
+                    "x": 250,
+                    "y": 30
+                }
+            }
+        },
+        "body_whiteF.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 297,
+                    "y": 231
+                },
+                "bracoE": {
+                    "x": 38,
+                    "y": 231
+                },
+                "boca": {
+                    "x": 176,
+                    "y": 379
+                },
+                "nariz": {
+                    "x": 176,
+                    "y": 282
+                },
+                "olhoD": {
+                    "x": 248,
+                    "y": 160
+                },
+                "olhoE": {
+                    "x": 102,
+                    "y": 160
+                },
+                "orelhaD": {
+                    "x": 293,
+                    "y": 115
+                },
+                "orelhaE": {
+                    "x": 40,
+                    "y": 115
+                },
+                "detalheD": {
+                    "x": 217,
+                    "y": 39
+                },
+                "detalheE": {
+                    "x": 125,
+                    "y": 39
+                },
+                "pernaD": {
+                    "x": 229,
+                    "y": 450
+                },
+                "pernaE": {
+                    "x": 109,
+                    "y": 450
+                }
+            }
+        },
+        "body_redD.png": {
+            "tipo": "corpo",
+            "rotacao": 0,
+            "ancoras": {
+                "bracoD": {
+                    "x": 338,
+                    "y": 195
+                },
+                "bracoE": {
+                    "x": 8,
+                    "y": 195
+                },
+                "boca": {
+                    "x": 175,
+                    "y": 263
+                },
+                "nariz": {
+                    "x": 172,
+                    "y": 203
+                },
+                "olhoD": {
+                    "x": 244,
+                    "y": 143
+                },
+                "olhoE": {
+                    "x": 101,
+                    "y": 143
+                },
+                "orelhaD": {
+                    "x": 314,
+                    "y": 99
+                },
+                "orelhaE": {
+                    "x": 33,
+                    "y": 99
+                },
+                "detalheD": {
+                    "x": 259,
+                    "y": 37
+                },
+                "detalheE": {
+                    "x": 86,
+                    "y": 37
+                },
+                "pernaD": {
+                    "x": 255,
+                    "y": 337
+                },
+                "pernaE": {
+                    "x": 96,
+                    "y": 337
+                }
+            }
+        }
+    },
+    "detalhes": {
+        "antenas": {
+            "detail_green_antenna_small.png": {
+                "tipo": "antena",
+                "rotacao": 0,
+                "ancoras": {
+                    "antena": {
+                        "x": 9,
+                        "y": 76
+                    }
+                }
+            },
+            "detail_white_antenna_large.png": {
+                "tipo": "antena",
+                "rotacao": 0,
+                "ancoras": {
+                    "antena": {
+                        "x": 12,
+                        "y": 108
+                    }
+                }
+            },
+            "detail_yellow_antenna_large.png": {
+                "tipo": "antena",
+                "rotacao": 0,
+                "ancoras": {
+                    "antena": {
+                        "x": 13,
+                        "y": 107
+                    }
+                }
+            },
+            "detail_yellow_antenna_small.png": {
+                "tipo": "antena",
+                "rotacao": 0,
+                "ancoras": {
+                    "antena": {
+                        "x": 9,
+                        "y": 76
+                    }
+                }
+            },
+            "detail_white_antenna_small.png": {
+                "tipo": "antena",
+                "rotacao": 0,
+                "ancoras": {
+                    "antena": {
+                        "x": 7,
+                        "y": 76
+                    }
+                }
+            },
+            "detail_green_antenna_large.png": {
+                "tipo": "antena",
+                "rotacao": 0,
+                "ancoras": {
+                    "antena": {
+                        "x": 16,
+                        "y": 107
+                    }
+                }
+            },
+            "detail_red_antenna_small.png": {
+                "tipo": "antena",
+                "rotacao": 0,
+                "ancoras": {
+                    "antena": {
+                        "x": 8,
+                        "y": 76
+                    }
+                }
+            },
+            "detail_red_antenna_large.png": {
+                "tipo": "antena",
+                "rotacao": 0,
+                "ancoras": {
+                    "antena": {
+                        "x": 14,
+                        "y": 109
+                    }
+                }
+            },
+            "detail_dark_antenna_large.png": {
+                "tipo": "antena",
+                "rotacao": 0,
+                "ancoras": {
+                    "antena": {
+                        "x": 14,
+                        "y": 108
+                    }
+                }
+            },
+            "detail_dark_antenna_small.png": {
+                "tipo": "antena",
+                "rotacao": 0,
+                "ancoras": {
+                    "antena": {
+                        "x": 9,
+                        "y": 77
+                    }
+                }
+            },
+            "detail_blue_antenna_large.png": {
+                "tipo": "antena",
+                "rotacao": 0,
+                "ancoras": {
+                    "antena": {
+                        "x": 15,
+                        "y": 108
+                    }
+                }
+            },
+            "detail_blue_antenna_small.png": {
+                "tipo": "antena",
+                "rotacao": 0,
+                "ancoras": {
+                    "antena": {
+                        "x": 8,
+                        "y": 77
+                    }
+                }
+            }
+        },
+        "chifres": {
+            "detail_white_horn_large.png": {
+                "tipo": "chifre",
+                "rotacao": 0,
+                "ancoras": {
+                    "base": {
+                        "x": 15,
+                        "y": 57
+                    }
+                }
+            },
+            "detail_blue_horn_large.png": {
+                "tipo": "chifre",
+                "rotacao": 0,
+                "ancoras": {
+                    "base": {
+                        "x": 14,
+                        "y": 59
+                    }
+                }
+            },
+            "detail_green_horn_small.png": {
+                "tipo": "chifre",
+                "rotacao": 0,
+                "ancoras": {
+                    "base": {
+                        "x": 8,
+                        "y": 39
+                    }
+                }
+            },
+            "detail_dark_horn_large.png": {
+                "tipo": "chifre",
+                "rotacao": 0,
+                "ancoras": {
+                    "base": {
+                        "x": 13,
+                        "y": 62
+                    }
+                }
+            },
+            "detail_red_horn_large.png": {
+                "tipo": "chifre",
+                "rotacao": 0,
+                "ancoras": {
+                    "base": {
+                        "x": 13,
+                        "y": 62
+                    }
+                }
+            },
+            "detail_green_horn_large.png": {
+                "tipo": "chifre",
+                "rotacao": 0,
+                "ancoras": {
+                    "base": {
+                        "x": 14,
+                        "y": 62
+                    }
+                }
+            },
+            "detail_white_horn_small.png": {
+                "tipo": "chifre",
+                "rotacao": 0,
+                "ancoras": {
+                    "base": {
+                        "x": 8,
+                        "y": 39
+                    }
+                }
+            },
+            "detail_blue_horn_small.png": {
+                "tipo": "chifre",
+                "rotacao": 0,
+                "ancoras": {
+                    "base": {
+                        "x": 9,
+                        "y": 38
+                    }
+                }
+            },
+            "detail_red_horn_small.png": {
+                "tipo": "chifre",
+                "rotacao": 0,
+                "ancoras": {
+                    "base": {
+                        "x": 9,
+                        "y": 38
+                    }
+                }
+            },
+            "detail_dark_horn_small.png": {
+                "tipo": "chifre",
+                "rotacao": 0,
+                "ancoras": {
+                    "base": {
+                        "x": 10,
+                        "y": 39
+                    }
+                }
+            },
+            "detail_yellow_horn_large.png": {
+                "tipo": "chifre",
+                "rotacao": 0,
+                "ancoras": {
+                    "base": {
+                        "x": 14,
+                        "y": 60
+                    }
+                }
+            },
+            "detail_yellow_horn_small.png": {
+                "tipo": "chifre",
+                "rotacao": 0,
+                "ancoras": {
+                    "base": {
+                        "x": 10,
+                        "y": 39
+                    }
+                }
+            }
+        }
+    },
+    "bracos": {
+        "arm_blueA.png": {
+            "tipo": "braco",
+            "rotacao": 338,
+            "ancoras": {
+                "A": {
+                    "x": 32,
+                    "y": 32
+                }
+            }
+        },
+        "arm_yellowA.png": {
+            "tipo": "braco",
+            "rotacao": 343,
+            "ancoras": {
+                "A": {
+                    "x": 29,
+                    "y": 33
+                }
+            }
+        },
+        "arm_whiteD.png": {
+            "tipo": "braco",
+            "rotacao": 342,
+            "ancoras": {
+                "A": {
+                    "x": 47,
+                    "y": 51
+                }
+            }
+        },
+        "arm_yellowC.png": {
+            "tipo": "braco",
+            "rotacao": 350,
+            "ancoras": {
+                "A": {
+                    "x": 37,
+                    "y": 48
+                }
+            }
+        },
+        "arm_yellowE.png": {
+            "tipo": "braco",
+            "rotacao": 323,
+            "ancoras": {
+                "A": {
+                    "x": 63,
+                    "y": 22
+                }
+            }
+        },
+        "arm_yellowD.png": {
+            "tipo": "braco",
+            "rotacao": 346,
+            "ancoras": {
+                "A": {
+                    "x": 37,
+                    "y": 36
+                }
+            }
+        },
+        "arm_whiteE.png": {
+            "tipo": "braco",
+            "rotacao": 332,
+            "ancoras": {
+                "A": {
+                    "x": 47,
+                    "y": 18
+                }
+            }
+        },
+        "arm_yellowB.png": {
+            "tipo": "braco",
+            "rotacao": 349,
+            "ancoras": {
+                "A": {
+                    "x": 26,
+                    "y": 18
+                }
+            }
+        },
+        "arm_redB.png": {
+            "tipo": "braco",
+            "rotacao": 354,
+            "ancoras": {
+                "A": {
+                    "x": 23,
+                    "y": 19
+                }
+            }
+        },
+        "arm_redA.png": {
+            "tipo": "braco",
+            "rotacao": 352,
+            "ancoras": {
+                "A": {
+                    "x": 26,
+                    "y": 29
+                }
+            }
+        },
+        "arm_redE.png": {
+            "tipo": "braco",
+            "rotacao": 333,
+            "ancoras": {
+                "A": {
+                    "x": 47,
+                    "y": 21
+                }
+            }
+        },
+        "arm_darkD.png": {
+            "tipo": "braco",
+            "rotacao": 338,
+            "ancoras": {
+                "A": {
+                    "x": 40,
+                    "y": 29
+                }
+            }
+        },
+        "arm_redC.png": {
+            "tipo": "braco",
+            "rotacao": 344,
+            "ancoras": {
+                "A": {
+                    "x": 31,
+                    "y": 39
+                }
+            }
+        },
+        "arm_greenC.png": {
+            "tipo": "braco",
+            "rotacao": 348,
+            "ancoras": {
+                "A": {
+                    "x": 34,
+                    "y": 32
+                }
+            }
+        },
+        "arm_greenA.png": {
+            "tipo": "braco",
+            "rotacao": 347,
+            "ancoras": {
+                "A": {
+                    "x": 26,
+                    "y": 30
+                }
+            }
+        },
+        "arm_darkB.png": {
+            "tipo": "braco",
+            "rotacao": 347,
+            "ancoras": {
+                "A": {
+                    "x": 19,
+                    "y": 26
+                }
+            }
+        },
+        "arm_redD.png": {
+            "tipo": "braco",
+            "rotacao": 348,
+            "ancoras": {
+                "A": {
+                    "x": 31,
+                    "y": 35
+                }
+            }
+        },
+        "arm_blueB.png": {
+            "tipo": "braco",
+            "rotacao": 352,
+            "ancoras": {
+                "A": {
+                    "x": 24,
+                    "y": 21
+                }
+            }
+        },
+        "arm_greenE.png": {
+            "tipo": "braco",
+            "rotacao": 344,
+            "ancoras": {
+                "A": {
+                    "x": 49,
+                    "y": 25
+                }
+            }
+        },
+        "arm_greenD.png": {
+            "tipo": "braco",
+            "rotacao": 354,
+            "ancoras": {
+                "A": {
+                    "x": 42,
+                    "y": 43
+                }
+            }
+        },
+        "arm_darkC.png": {
+            "tipo": "braco",
+            "rotacao": 353,
+            "ancoras": {
+                "A": {
+                    "x": 37,
+                    "y": 34
+                }
+            }
+        },
+        "arm_whiteA.png": {
+            "tipo": "braco",
+            "rotacao": 0,
+            "ancoras": {
+                "A": {
+                    "x": 25,
+                    "y": 37
+                }
+            }
+        },
+        "arm_blueD.png": {
+            "tipo": "braco",
+            "rotacao": 356,
+            "ancoras": {
+                "A": {
+                    "x": 42,
+                    "y": 39
+                }
+            }
+        },
+        "arm_blueE.png": {
+            "tipo": "braco",
+            "rotacao": 350,
+            "ancoras": {
+                "A": {
+                    "x": 47,
+                    "y": 23
+                }
+            }
+        },
+        "arm_whiteB.png": {
+            "tipo": "braco",
+            "rotacao": 358,
+            "ancoras": {
+                "A": {
+                    "x": 22,
+                    "y": 25
+                }
+            }
+        },
+        "arm_darkE.png": {
+            "tipo": "braco",
+            "rotacao": 344,
+            "ancoras": {
+                "A": {
+                    "x": 50,
+                    "y": 26
+                }
+            }
+        },
+        "arm_darkA.png": {
+            "tipo": "braco",
+            "rotacao": 354,
+            "ancoras": {
+                "A": {
+                    "x": 35,
+                    "y": 30
+                }
+            }
+        },
+        "arm_greenB.png": {
+            "tipo": "braco",
+            "rotacao": 0,
+            "ancoras": {
+                "A": {
+                    "x": 24,
+                    "y": 19
+                }
+            }
+        },
+        "arm_blueC.png": {
+            "tipo": "braco",
+            "rotacao": 0,
+            "ancoras": {
+                "A": {
+                    "x": 40,
+                    "y": 45
+                }
+            }
+        },
+        "arm_whiteC.png": {
+            "tipo": "braco",
+            "rotacao": 0,
+            "ancoras": {
+                "A": {
+                    "x": 36,
+                    "y": 46
+                }
+            }
+        }
+    },
+    "orelhas": {
+        "detail_blue_ear_round.png": {
+            "tipo": "orelha",
+            "rotacao": 0,
+            "ancoras": {
+                "orelha": {
+                    "x": 18,
+                    "y": 88
+                }
+            }
+        },
+        "detail_white_ear_round.png": {
+            "tipo": "orelha",
+            "rotacao": 0,
+            "ancoras": {
+                "orelha": {
+                    "x": 20,
+                    "y": 88
+                }
+            }
+        },
+        "detail_red_ear_round.png": {
+            "tipo": "orelha",
+            "rotacao": 0,
+            "ancoras": {
+                "orelha": {
+                    "x": 23,
+                    "y": 93
+                }
+            }
+        },
+        "detail_green_ear_round.png": {
+            "tipo": "orelha",
+            "rotacao": 0,
+            "ancoras": {
+                "orelha": {
+                    "x": 23,
+                    "y": 91
+                }
+            }
+        },
+        "detail_green_ear.png": {
+            "tipo": "orelha",
+            "rotacao": 0,
+            "ancoras": {
+                "orelha": {
+                    "x": 16,
+                    "y": 64
+                }
+            }
+        },
+        "detail_blue_ear.png": {
+            "tipo": "orelha",
+            "rotacao": 180,
+            "ancoras": {
+                "orelha": {
+                    "x": 15,
+                    "y": 65
+                }
+            }
+        },
+        "detail_dark_ear.png": {
+            "tipo": "orelha",
+            "rotacao": 0,
+            "ancoras": {
+                "orelha": {
+                    "x": 17,
+                    "y": 65
+                }
+            }
+        },
+        "detail_white_ear.png": {
+            "tipo": "orelha",
+            "rotacao": 0,
+            "ancoras": {
+                "orelha": {
+                    "x": 14,
+                    "y": 66
+                }
+            }
+        },
+        "detail_red_ear.png": {
+            "tipo": "orelha",
+            "rotacao": 0,
+            "ancoras": {
+                "orelha": {
+                    "x": 16,
+                    "y": 66
+                }
+            }
+        },
+        "detail_yellow_ear_round.png": {
+            "tipo": "orelha",
+            "rotacao": 0,
+            "ancoras": {
+                "orelha": {
+                    "x": 15,
+                    "y": 89
+                }
+            }
+        },
+        "detail_dark_ear_round.png": {
+            "tipo": "orelha",
+            "rotacao": 0,
+            "ancoras": {
+                "orelha": {
+                    "x": 15,
+                    "y": 90
+                }
+            }
+        },
+        "detail_yellow_ear.png": {
+            "tipo": "orelha",
+            "rotacao": 10,
+            "ancoras": {
+                "orelha": {
+                    "x": 16,
+                    "y": 66
+                }
+            }
+        }
+    },
+    "nariz": {
+        "nose_red.png": {
+            "tipo": "nariz",
+            "rotacao": 0,
+            "ancoras": {
+                "meio": {
+                    "x": 45,
+                    "y": 43
+                }
+            }
+        },
+        "nose_green.png": {
+            "tipo": "nariz",
+            "rotacao": 0,
+            "ancoras": {
+                "meio": {
+                    "x": 49,
+                    "y": 63
+                }
+            }
+        },
+        "nose_brown.png": {
+            "tipo": "nariz",
+            "rotacao": 0,
+            "ancoras": {
+                "meio": {
+                    "x": 52,
+                    "y": 38
+                }
+            }
+        },
+        "nose_yellow.png": {
+            "tipo": "nariz",
+            "rotacao": 0,
+            "ancoras": {
+                "meio": {
+                    "x": 43,
+                    "y": 37
+                }
+            }
+        }
+    },
+    "olhos": {
+        "eye_human_red.png": {
+            "tipo": "olhos",
+            "rotacao": 0,
+            "ancoras": {
+                "meio": {
+                    "x": 62,
+                    "y": 64
+                }
+            }
+        },
+        "eye_cute_light.png": {
+            "tipo": "olhos",
+            "rotacao": 0,
+            "ancoras": {
+                "meio": {
+                    "x": 60,
+                    "y": 64
+                }
+            }
+        },
+        "eye_dead.png": {
+            "tipo": "olhos",
+            "rotacao": 0,
+            "ancoras": {
+                "meio": {
+                    "x": 31,
+                    "y": 32
+                }
+            }
+        },
+        "eye_blue.png": {
+            "tipo": "olhos",
+            "rotacao": 0,
+            "ancoras": {
+                "meio": {
+                    "x": 63,
+                    "y": 62
+                }
+            }
+        },
+        "eye_angry_blue.png": {
+            "tipo": "olhos",
+            "rotacao": 0,
+            "ancoras": {
+                "meio": {
+                    "x": 56,
+                    "y": 49
+                }
+            }
+        },
+        "eye_human_green.png": {
+            "tipo": "olhos",
+            "rotacao": 0,
+            "ancoras": {
+                "meio": {
+                    "x": 61,
+                    "y": 62
+                }
+            }
+        },
+        "eye_red.png": {
+            "tipo": "olhos",
+            "rotacao": 0,
+            "ancoras": {
+                "meio": {
+                    "x": 64,
+                    "y": 52
+                }
+            }
+        },
+        "eye_cute_dark.png": {
+            "tipo": "olhos",
+            "rotacao": 0,
+            "ancoras": {
+                "meio": {
+                    "x": 55,
+                    "y": 59
+                }
+            }
+        },
+        "eye_yellow.png": {
+            "tipo": "olhos",
+            "rotacao": 0,
+            "ancoras": {
+                "meio": {
+                    "x": 63,
+                    "y": 60
+                }
+            }
+        },
+        "eye_angry_green.png": {
+            "tipo": "olhos",
+            "rotacao": 0,
+            "ancoras": {
+                "meio": {
+                    "x": 64,
+                    "y": 55
+                }
+            }
+        },
+        "eye_closed_feminine.png": {
+            "tipo": "olhos",
+            "rotacao": 0,
+            "ancoras": {
+                "meio": {
+                    "x": 44,
+                    "y": 15
+                }
+            }
+        },
+        "eye_human_blue.png": {
+            "tipo": "olhos",
+            "rotacao": 0,
+            "ancoras": {
+                "meio": {
+                    "x": 72,
+                    "y": 61
+                }
+            }
+        },
+        "eye_closed_happy.png": {
+            "tipo": "olhos",
+            "rotacao": 0,
+            "ancoras": {
+                "meio": {
+                    "x": 42,
+                    "y": 15
+                }
+            }
+        },
+        "eye_psycho_light.png": {
+            "tipo": "olhos",
+            "rotacao": 0,
+            "ancoras": {
+                "meio": {
+                    "x": 62,
+                    "y": 63
+                }
+            }
+        },
+        "eye_angry_red.png": {
+            "tipo": "olhos",
+            "rotacao": 0,
+            "ancoras": {
+                "meio": {
+                    "x": 61,
+                    "y": 55
+                }
+            }
+        },
+        "eye_psycho_dark.png": {
+            "tipo": "olhos",
+            "rotacao": 0,
+            "ancoras": {
+                "meio": {
+                    "x": 62,
+                    "y": 63
+                }
+            }
+        },
+        "eye_human.png": {
+            "tipo": "olhos",
+            "rotacao": 0,
+            "ancoras": {
+                "meio": {
+                    "x": 61,
+                    "y": 63
+                }
+            }
+        }
+    },
+    "pernas": {
+        "leg_whiteB.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 21,
+                    "y": 11
+                }
+            }
+        },
+        "leg_yellowC.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 29,
+                    "y": 16
+                }
+            }
+        },
+        "leg_whiteC.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 27,
+                    "y": 12
+                }
+            }
+        },
+        "leg_yellowD.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 23,
+                    "y": 14
+                }
+            }
+        },
+        "leg_redD.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 23,
+                    "y": 16
+                }
+            }
+        },
+        "leg_darkC.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 21,
+                    "y": 16
+                }
+            }
+        },
+        "leg_greenE.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 21,
+                    "y": 20
+                }
+            }
+        },
+        "leg_blueE.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 33,
+                    "y": 14
+                }
+            }
+        },
+        "leg_whiteD.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 27,
+                    "y": 11
+                }
+            }
+        },
+        "leg_whiteA.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 35,
+                    "y": 11
+                }
+            }
+        },
+        "leg_whiteE.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 32,
+                    "y": 13
+                }
+            }
+        },
+        "leg_blueC.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 28,
+                    "y": 12
+                }
+            }
+        },
+        "leg_redB.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 22,
+                    "y": 10
+                }
+            }
+        },
+        "leg_darkE.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 33,
+                    "y": 15
+                }
+            }
+        },
+        "leg_darkA.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 35,
+                    "y": 17
+                }
+            }
+        },
+        "leg_greenD.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 27,
+                    "y": 13
+                }
+            }
+        },
+        "leg_greenA.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 34,
+                    "y": 15
+                }
+            }
+        },
+        "leg_yellowA.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 36,
+                    "y": 19
+                }
+            }
+        },
+        "leg_blueB.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 21,
+                    "y": 11
+                }
+            }
+        },
+        "leg_darkD.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 24,
+                    "y": 19
+                }
+            }
+        },
+        "leg_blueD.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 33,
+                    "y": 16
+                }
+            }
+        },
+        "leg_greenC.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 28,
+                    "y": 18
+                }
+            }
+        },
+        "leg_yellowB.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 23,
+                    "y": 14
+                }
+            }
+        },
+        "leg_darkB.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 20,
+                    "y": 17
+                }
+            }
+        },
+        "leg_redE.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 41,
+                    "y": 25
+                }
+            }
+        },
+        "leg_redA.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 41,
+                    "y": 18
+                }
+            }
+        },
+        "leg_redC.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 30,
+                    "y": 17
+                }
+            }
+        },
+        "leg_greenB.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 23,
+                    "y": 12
+                }
+            }
+        },
+        "leg_yellowE.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 31,
+                    "y": 20
+                }
+            }
+        },
+        "leg_blueA.png": {
+            "tipo": "pernas",
+            "rotacao": 0,
+            "ancoras": {
+                "perna": {
+                    "x": 32,
+                    "y": 19
+                }
+            }
+        }
+    },
+    "bocas": {
+        "mouthA.png": {
+            "tipo": "boca",
+            "rotacao": 0,
+            "ancoras": {
+                "A": {
+                    "x": 71,
+                    "y": 31
+                }
+            }
+        },
+        "mouth_closed_fangs.png": {
+            "tipo": "boca",
+            "rotacao": 0,
+            "ancoras": {
+                "A": {
+                    "x": 50,
+                    "y": 31
+                }
+            }
+        },
+        "mouth_closed_teeth.png": {
+            "tipo": "boca",
+            "rotacao": 0,
+            "ancoras": {
+                "A": {
+                    "x": 67,
+                    "y": 28
+                }
+            }
+        },
+        "mouthI.png": {
+            "tipo": "boca",
+            "rotacao": 0,
+            "ancoras": {
+                "A": {
+                    "x": 76,
+                    "y": 33
+                }
+            }
+        },
+        "mouthB.png": {
+            "tipo": "boca",
+            "rotacao": 0,
+            "ancoras": {
+                "A": {
+                    "x": 71,
+                    "y": 31
+                }
+            }
+        },
+        "mouthG.png": {
+            "tipo": "boca",
+            "rotacao": 0,
+            "ancoras": {
+                "A": {
+                    "x": 50,
+                    "y": 36
+                }
+            }
+        },
+        "mouth_closed_happy.png": {
+            "tipo": "boca",
+            "rotacao": 0,
+            "ancoras": {
+                "A": {
+                    "x": 81,
+                    "y": 31
+                }
+            }
+        },
+        "mouthH.png": {
+            "tipo": "boca",
+            "rotacao": 0,
+            "ancoras": {
+                "A": {
+                    "x": 79,
+                    "y": 31
+                }
+            }
+        },
+        "mouthF.png": {
+            "tipo": "boca",
+            "rotacao": 0,
+            "ancoras": {
+                "A": {
+                    "x": 75,
+                    "y": 33
+                }
+            }
+        },
+        "mouthD.png": {
+            "tipo": "boca",
+            "rotacao": 0,
+            "ancoras": {
+                "A": {
+                    "x": 64,
+                    "y": 20
+                }
+            }
+        },
+        "mouthC.png": {
+            "tipo": "boca",
+            "rotacao": 0,
+            "ancoras": {
+                "A": {
+                    "x": 77,
+                    "y": 27
+                }
+            }
+        },
+        "mouth_closed_sad.png": {
+            "tipo": "boca",
+            "rotacao": 0,
+            "ancoras": {
+                "A": {
+                    "x": 50,
+                    "y": 23
+                }
+            }
+        },
+        "mouthJ.png": {
+            "tipo": "boca",
+            "rotacao": 0,
+            "ancoras": {
+                "A": {
+                    "x": 70,
+                    "y": 28
+                }
+            }
+        },
+        "mouthE.png": {
+            "tipo": "boca",
+            "rotacao": 0,
+            "ancoras": {
+                "A": {
+                    "x": 60,
+                    "y": 33
+                }
+            }
+        }
+    }
+}
