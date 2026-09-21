@@ -1,299 +1,209 @@
-import React, { useState } from 'react';
-import {
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-} from 'react-native';
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { StatusBar } from 'expo-status-bar';
-import * as Haptics from 'expo-haptics';
-import { Mascot, MascotMood, MascotConfig } from './src/components/Mascot';
-import { BottomNav, TabType } from './src/components/BottomNav';
-import { RankingModal } from './src/components/RankingModal';
-import { TasksModal } from './src/components/TasksModal';
-import { ShopModal } from './src/components/ShopModal';
+import React, { useState, useEffect } from 'react';
+import { View, ActivityIndicator, StyleSheet } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { ProfileProvider } from './src/contexts/ProfileContext';
+import { LoginScreen } from './src/screens/LoginScreen';
+import { ProfilesScreen } from './src/screens/ProfilesScreen';
 import { CustomizationScreen } from './src/screens/CustomizationScreen';
+import { GameScreen } from './src/screens/GameScreen';
+import { RewardsScreen } from './src/screens/RewardsScreen';
+import { BottomNavBar, MainTabType } from './src/components/BottomNavBar';
+
+// Import das Fases de Jogo
+import CompareExpressionsScreen from './src/screens/games/CompareExpressionsScreen';
+import SelectExpressionScreen from './src/screens/games/SelectExpressionScreen';
+import { LevelType } from './src/constants/expressionAssets';
+import ConnectExpressionsScreen from './src/screens/games/ConnectExpressionsScreen';
+import FindImpostorScreen from './src/screens/games/FindImpostorScreen';
+import MemoryGameScreen from './src/screens/games/MemoryGameScreen';
+import BlinkMechanicScreen from './src/screens/games/BlinkMechanicScreen';
+
+type AppFlowState = 'auth' | 'profiles' | 'game';
+
+export interface ActivePhaseState {
+  phaseId: number;
+  phaseKey: string; // Ex: 'CompareExpressions'
+  level: LevelType;
+}
+
+const AUTH_TOKEN_KEY = '@grimcoach:auth_token';
 
 export default function App() {
-  const [mood, setMood] = useState<MascotMood>('neutral');
-  const [currentTab, setCurrentTab] = useState<TabType>('play');
+  const [currentFlow, setCurrentFlow] = useState<AppFlowState>('auth');
+  const [activeTab, setActiveTab] = useState<MainTabType>('mascot');
+  const [isCheckingAuth, setIsCheckingAuth] = useState(true);
 
-  const [rankingVisible, setRankingVisible] = useState(false);
-  const [tasksVisible, setTasksVisible] = useState(false);
-  const [shopVisible, setShopVisible] = useState(false);
+  // Controla se há um minijogo em execução no momento
+  const [activePhase, setActivePhase] = useState<ActivePhaseState | null>(null);
 
-  const [playerLevel] = useState<number>(3);
-  const [stars, setStars] = useState<number>(95);
+  useEffect(() => {
+    const checkSavedSession = async () => {
+      try {
+        const token = await AsyncStorage.getItem(AUTH_TOKEN_KEY);
+        if (token) {
+          setCurrentFlow('profiles');
+        } else {
+          setCurrentFlow('auth');
+        }
+      } catch {
+        setCurrentFlow('auth');
+      } finally {
+        setIsCheckingAuth(false);
+      }
+    };
+    checkSavedSession();
+  }, []);
 
-  const [unlockedItemIds, setUnlockedItemIds] = useState<string[]>([
-    'b_blueA',
-    'e_cuteLight',
-    'm_closedHappy',
-    'a_blueA',
-    'l_blueA',
-    'd_blueAntennaLarge',
-  ]);
-
-  const [mascotConfig, setMascotConfig] = useState<MascotConfig>({
-    bodyKey: 'blueA',
-    eyeKey: 'cuteLight',
-    mouthKey: 'closedHappy',
-    armKey: 'blueA',
-    legKey: 'blueA',
-    detailKey: 'blueAntennaLarge',
-  });
-
-  const cycleMood = () => {
-    const moods: MascotMood[] = ['neutral', 'happy', 'tired', 'angry'];
-    const nextIndex = (moods.indexOf(mood) + 1) % moods.length;
-    setMood(moods[nextIndex]);
+  const handleLoginSuccess = async (token: string) => {
+    try {
+      await AsyncStorage.setItem(AUTH_TOKEN_KEY, token);
+    } catch (e) {
+      console.error(e);
+    }
+    setCurrentFlow('profiles');
   };
 
-  const unlockItem = (id: string) => {
-    setUnlockedItemIds((prev) => [...prev, id]);
+  const handleLogout = async () => {
+    try {
+      await AsyncStorage.removeItem(AUTH_TOKEN_KEY);
+    } catch (e) {
+      console.error(e);
+    }
+    setCurrentFlow('auth');
   };
+
+  const handleProfileSelected = () => {
+    setActiveTab('mascot');
+    setActivePhase(null);
+    setCurrentFlow('game');
+  };
+
+  // Disparado quando o usuário clica em um nível dentro de GameScreen
+  const handleStartPhase = (phaseId: number, levelNumber: number) => {
+    if (phaseId === 1) {
+      setActivePhase({ phaseId: 1, phaseKey: 'CompareExpressions', level: `nivel${levelNumber}` as LevelType });
+    } else if (phaseId === 2) {
+      setActivePhase({ phaseId: 2, phaseKey: 'SelectExpression', level: `nivel${levelNumber}` as LevelType });
+    } else if (phaseId === 3) {
+      setActivePhase({ phaseId: 3, phaseKey: 'ConnectExpressions', level: `nivel${levelNumber}` as LevelType });
+    } else if (phaseId === 4) {
+      setActivePhase({ phaseId: 4, phaseKey: 'FindImpostor', level: `nivel${levelNumber}` as LevelType });
+    }else if (phaseId === 5) {
+      setActivePhase({ phaseId: 5, phaseKey: 'MemoryGame', level: `nivel${levelNumber}` as LevelType });
+    }else if (phaseId === 6) {
+      setActivePhase({ phaseId: 5, phaseKey: 'BlinkMechanic', level: `nivel${levelNumber}` as LevelType });
+    }
+  };
+
+  if (isCheckingAuth) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#E07A5F" />
+      </View>
+    );
+  }
 
   return (
     <SafeAreaProvider>
-      <SafeAreaView style={styles.safeContainer} edges={['top', 'bottom']}>
-        <StatusBar hidden={true} />
-
-        <View style={styles.ambientCircleLeft} />
-        <View style={styles.ambientCircleRight} />
-
-        {currentTab === 'play' && (
-          <>
-            <View style={styles.topBar}>
-              <View style={styles.playerLevelBadge}>
-                <Text style={styles.levelIcon}>⭐</Text>
-                <Text style={styles.levelText}>NÍVEL {playerLevel}</Text>
-              </View>
-
-              <View style={styles.streakCard}>
-                <Text style={styles.streakFlame}>🔥</Text>
-                <Text style={styles.streakText}>3 DIAS</Text>
-              </View>
-            </View>
-
-            <View style={styles.sideActionsColumn}>
-              <TouchableOpacity
-                style={styles.circleActionButton}
-                onPress={() => {
-                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                  setRankingVisible(true);
-                }}
-                activeOpacity={0.8}
-              >
-                <Text style={styles.circleButtonIcon}>👑</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                style={styles.circleActionButton}
-                onPress={() => {
-                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-                  setTasksVisible(true);
-                }}
-                activeOpacity={0.8}
-              >
-                <Text style={styles.circleButtonIcon}>📋</Text>
-              </TouchableOpacity>
-            </View>
-
-            <View style={styles.centerArea}>
-              <View style={styles.mascotContainer}>
-                <View style={styles.nameplate}>
-                  <Text style={styles.nameplateText}>Grimi</Text>
-                </View>
-
-                <Mascot mood={mood} config={mascotConfig} onPress={cycleMood} />
-
-                <View style={styles.tapTipCard}>
-                  <Text style={styles.tapTipText}>Toca no Grimi para brincar! ✨</Text>
-                </View>
-              </View>
-            </View>
-          </>
+      <ProfileProvider>
+        {/* 1. Login do Responsável */}
+        {currentFlow === 'auth' && (
+          <LoginScreen onLoginSuccess={handleLoginSuccess} />
         )}
 
-        {currentTab === 'custom' && (
-          <CustomizationScreen
-            currentConfig={mascotConfig}
-            onUpdateConfig={setMascotConfig}
-            unlockedItemIds={unlockedItemIds}
-            onOpenShop={() => setShopVisible(true)}
+        {/* 2. Seleção de Jogador */}
+        {currentFlow === 'profiles' && (
+          <ProfilesScreen
+            onProfileSelected={handleProfileSelected}
+            onLogout={handleLogout}
           />
         )}
 
-        {currentTab === 'awards' && (
-          <View style={styles.placeholderBox}>
-            <Text style={styles.placeholderTitle}>Sala de Troféus</Text>
+        {/* 3. Aplicação Principal */}
+        {currentFlow === 'game' && (
+          <View style={styles.gameContainer}>
+            {/* SE UMA FASE ESTIVER ATIVA: Renderiza o minijogo em tela cheia */}
+            {activePhase !== null ? (
+              <View style={styles.phaseFullscreen}>
+                {activePhase.phaseKey === 'CompareExpressions' && (
+                  <CompareExpressionsScreen
+                    level={activePhase.level}
+                    onBack={() => setActivePhase(null)}
+                  />
+                )}
+                {activePhase.phaseKey === 'SelectExpression' && (
+                  <SelectExpressionScreen
+                    level={activePhase.level}
+                    onBack={() => setActivePhase(null)}
+                  />
+                )}
+                {activePhase.phaseKey === 'ConnectExpressions' && (
+                  <ConnectExpressionsScreen
+                    level={activePhase.level}
+                    onBack={() => setActivePhase(null)}
+                  />
+                )}
+                {activePhase.phaseKey === 'FindImpostor' && (
+                  <FindImpostorScreen
+                    level={activePhase.level}
+                    onBack={() => setActivePhase(null)}
+                  />
+                )}
+                {activePhase.phaseKey === 'MemoryGame' && (
+                  <MemoryGameScreen
+                    level={activePhase.level}
+                    onBack={() => setActivePhase(null)}
+                  />
+                )}
+                {activePhase.phaseKey === 'BlinkMechanic' && (
+                  <BlinkMechanicScreen
+                    level={activePhase.level}
+                    onBack={() => setActivePhase(null)}
+                  />
+                )}
+              </View>
+            ) : (
+              /* SE NENHUMA FASE ESTIVER ABERTA: Renderiza as 3 abas normais + Barra Inferior */
+              <>
+                {activeTab === 'mascot' && (
+                  <CustomizationScreen
+                    onBackToProfiles={() => setCurrentFlow('profiles')}
+                  />
+                )}
+                {activeTab === 'play' && (
+                  <GameScreen onSelectPhaseLevel={handleStartPhase} />
+                )}
+                {activeTab === 'rewards' && <RewardsScreen />}
+
+                {/* Menu persistente visível em qualquer uma das 3 abas */}
+                <BottomNavBar
+                  currentTab={activeTab}
+                  onSelectTab={(tab) => setActiveTab(tab)}
+                />
+              </>
+            )}
           </View>
         )}
-
-        <RankingModal
-          visible={rankingVisible}
-          onClose={() => setRankingVisible(false)}
-        />
-        <TasksModal
-          visible={tasksVisible}
-          onClose={() => setTasksVisible(false)}
-        />
-        <ShopModal
-          visible={shopVisible}
-          onClose={() => setShopVisible(false)}
-          playerLevel={playerLevel}
-          stars={stars}
-          onUpdateStars={setStars}
-          unlockedItemIds={unlockedItemIds}
-          onUnlockItem={unlockItem}
-          currentConfig={mascotConfig}
-          onUpdateConfig={setMascotConfig}
-        />
-
-        <BottomNav currentTab={currentTab} onSelectTab={setCurrentTab} />
-      </SafeAreaView>
+      </ProfileProvider>
     </SafeAreaProvider>
   );
 }
 
 const styles = StyleSheet.create({
-  safeContainer: {
+  loadingContainer: {
     flex: 1,
-    backgroundColor: '#F7F2EA',
-  },
-  ambientCircleLeft: {
-    position: 'absolute',
-    top: -40,
-    left: -40,
-    width: 220,
-    height: 220,
-    borderRadius: 110,
-    backgroundColor: '#EFE5D8',
-    opacity: 0.8,
-  },
-  ambientCircleRight: {
-    position: 'absolute',
-    top: 180,
-    right: -50,
-    width: 170,
-    height: 170,
-    borderRadius: 85,
-    backgroundColor: '#EAD9C6',
-    opacity: 0.6,
-  },
-  topBar: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingHorizontal: 20,
-    paddingTop: 16,
-  },
-  playerLevelBadge: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#FAF5EE',
-    paddingHorizontal: 12,
-    paddingVertical: 8,
-    borderRadius: 20,
-    borderWidth: 2.5,
-    borderColor: '#4A3525',
-    gap: 6,
-  },
-  levelIcon: {
-    fontSize: 16,
-  },
-  levelText: {
-    fontSize: 12,
-    fontWeight: '900',
-    color: '#4A3525',
-  },
-  streakCard: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#FAF5EE',
-    paddingHorizontal: 14,
-    paddingVertical: 8,
-    borderRadius: 20,
-    borderWidth: 2.5,
-    borderColor: '#4A3525',
-    gap: 6,
-  },
-  streakFlame: {
-    fontSize: 18,
-  },
-  streakText: {
-    fontSize: 13,
-    fontWeight: '900',
-    color: '#D46B08',
-  },
-  sideActionsColumn: {
-    position: 'absolute',
-    right: 18,
-    top: '18%',
-    flexDirection: 'column',
-    gap: 14,
-    zIndex: 10,
-  },
-  circleActionButton: {
-    width: 52,
-    height: 52,
-    borderRadius: 26,
-    backgroundColor: '#FAF5EE',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 3,
-    borderColor: '#4A3525',
-    elevation: 6,
-  },
-  circleButtonIcon: {
-    fontSize: 22,
-  },
-  centerArea: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingBottom: 85,
-  },
-  mascotContainer: {
-    alignItems: 'center',
-  },
-  nameplate: {
-    backgroundColor: '#FAF5EE',
-    paddingHorizontal: 20,
-    paddingVertical: 6,
-    borderRadius: 16,
-    borderWidth: 2.5,
-    borderColor: '#4A3525',
-    marginBottom: 10,
-  },
-  nameplateText: {
-    fontSize: 18,
-    fontWeight: '900',
-    color: '#4A3525',
-  },
-  tapTipCard: {
-    marginTop: 16,
-    backgroundColor: '#EFE5D8',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    borderRadius: 16,
-    borderWidth: 1.5,
-    borderColor: '#D9C8B4',
-  },
-  tapTipText: {
-    fontSize: 13,
-    fontWeight: '800',
-    color: '#6B5344',
-  },
-  placeholderBox: {
-    flex: 1,
+    backgroundColor: '#F7F2EB',
     alignItems: 'center',
     justifyContent: 'center',
   },
-  placeholderTitle: {
-    fontSize: 20,
-    fontWeight: '900',
-    color: '#4A3525',
+  gameContainer: {
+    flex: 1,
+    backgroundColor: '#F7F2EB',
+  },
+  phaseFullscreen: {
+    flex: 1,
+    backgroundColor: '#F7F2EB',
   },
 });

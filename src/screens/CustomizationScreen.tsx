@@ -8,11 +8,18 @@ import {
   Image,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import * as Haptics from 'expo-haptics';
 import { Mascot, MascotConfig } from '../components/Mascot';
 import { MONSTER_PARTS } from '../constants/monsterParts';
 import { SHOP_ITEMS, ShopItem } from '../constants/shopItems';
 import { useProfile, DEFAULT_PROFILE } from '../contexts/ProfileContext';
+
+interface CustomizationScreenProps {
+  onBackToProfiles?: () => void;
+  onOpenRewards?: () => void;
+  onPlayGame?: () => void;
+}
 
 type MainTab = 'vestuario' | 'loja';
 type ShopCategory = 'bodies' | 'eyes' | 'mouths' | 'arms' | 'legs' | 'details';
@@ -26,21 +33,21 @@ const CATEGORY_TO_CONFIG_KEY: Record<ShopCategory, keyof MascotConfig> = {
   details: 'detailKey',
 };
 
-export const CustomizationScreen: React.FC = () => {
+export const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
+  onBackToProfiles,
+  onOpenRewards,
+  onPlayGame,
+}) => {
   const profileContext = useProfile();
   
-  // Garante um fallback seguro caso o context ainda esteja montando
   const profile = profileContext?.activeProfile || DEFAULT_PROFILE;
   const updateMascotConfig = profileContext?.updateMascotConfig || (() => {});
   const buyShopItem = profileContext?.buyShopItem || (async () => ({ success: false }));
 
   const [currentTab, setCurrentTab] = useState<MainTab>('vestuario');
   const [selectedCategory, setSelectedCategory] = useState<ShopCategory>('bodies');
-  
-  // Estado local para o provador virtual
   const [previewConfig, setPreviewConfig] = useState<MascotConfig>(profile.currentConfig);
 
-  // Sincroniza o preview caso os dados do storage terminem de carregar depois
   useEffect(() => {
     if (profile?.currentConfig) {
       setPreviewConfig(profile.currentConfig);
@@ -63,7 +70,6 @@ export const CustomizationScreen: React.FC = () => {
       ? categoryItems.filter((item) => (profile.unlockedItemIds || []).includes(item.id) || item.price === 0)
       : categoryItems;
 
-  // Equipar no Vestuário (offline e imediato)
   const handleEquip = (item: ShopItem) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     const configKey = CATEGORY_TO_CONFIG_KEY[item.category];
@@ -75,7 +81,6 @@ export const CustomizationScreen: React.FC = () => {
     setPreviewConfig(newConfig);
   };
 
-  // Provar ou Comprar na Loja
   const handlePreviewOrBuy = async (item: ShopItem) => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     const configKey = CATEGORY_TO_CONFIG_KEY[item.category];
@@ -83,7 +88,6 @@ export const CustomizationScreen: React.FC = () => {
     const isPreviewing = previewConfig[configKey] === item.partKey;
     const isLevelLocked = (profile.playerLevel || 1) < item.levelRequired;
 
-    // Se já possui, equipa imediatamente
     if (isOwned) {
       handleEquip(item);
       return;
@@ -94,7 +98,6 @@ export const CustomizationScreen: React.FC = () => {
       return;
     }
 
-    // Primeiro toque na loja: experimenta no provador
     if (!isPreviewing) {
       setPreviewConfig((prev) => ({
         ...prev,
@@ -103,7 +106,6 @@ export const CustomizationScreen: React.FC = () => {
       return;
     }
 
-    // Segundo toque (já no espelho): confirma compra
     const res = await buyShopItem(item);
     if (res.success) {
       Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
@@ -128,7 +130,20 @@ export const CustomizationScreen: React.FC = () => {
       <View style={styles.container}>
         {/* CABEÇALHO */}
         <View style={styles.header}>
-          <Text style={styles.screenTitle}>{profile.name || 'Meu Amigo'}</Text>
+          <TouchableOpacity
+            style={styles.profileHeaderBtn}
+            onPress={() => {
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+              onBackToProfiles?.();
+            }}
+            activeOpacity={0.8}
+          >
+            <Text style={styles.screenTitle}>{profile.nickname || profile.name}</Text>
+            {profile.accessCode && (
+              <Text style={styles.accessCodeSubtitle}>Cód: {profile.accessCode} • Trocar 🔁</Text>
+            )}
+          </TouchableOpacity>
+
           <View style={styles.walletBadge}>
             <Text style={styles.walletText}>⭐ {profile.stars ?? 0}</Text>
           </View>
@@ -231,7 +246,6 @@ export const CustomizationScreen: React.FC = () => {
                 onPress={() => (currentTab === 'vestuario' ? handleEquip(item) : handlePreviewOrBuy(item))}
                 activeOpacity={0.85}
               >
-                {/* Imagem do Item em destaque */}
                 <View style={styles.itemImageContainer}>
                   {imageSource ? (
                     <Image
@@ -262,7 +276,7 @@ export const CustomizationScreen: React.FC = () => {
                   </View>
                 )}
 
-                {/* Modo Loja - Overlay cobrindo todo o item com preço ou bloqueio */}
+                {/* Modo Loja - Overlay de Preço/Bloqueio */}
                 {currentTab === 'loja' && !isOwned && (
                   <View
                     style={[
@@ -314,10 +328,19 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     marginBottom: 6,
   },
+  profileHeaderBtn: {
+    justifyContent: 'center',
+  },
   screenTitle: {
     fontSize: 20,
     fontWeight: '900',
     color: '#4A3525',
+  },
+  accessCodeSubtitle: {
+    fontSize: 10,
+    fontWeight: '800',
+    color: '#8C7A6B',
+    marginTop: 1,
   },
   walletBadge: {
     backgroundColor: '#FFFFFF',
@@ -332,8 +355,6 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     color: '#4A3525',
   },
-
-  // 1. Palco Compacto
   stageCard: {
     marginHorizontal: 16,
     height: 180,
@@ -369,8 +390,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
-  // 2. Abas
   tabBarContainer: {
     flexDirection: 'row',
     backgroundColor: '#ECE3D7',
@@ -398,8 +417,6 @@ const styles = StyleSheet.create({
   tabButtonTextActive: {
     color: '#FFFFFF',
   },
-
-  // Categorias
   categoriesContainer: {
     marginBottom: 6,
   },
@@ -433,8 +450,6 @@ const styles = StyleSheet.create({
   categoryTextActive: {
     color: '#FFFFFF',
   },
-
-  // 3. Grid de Itens
   itemsArea: {
     flex: 1,
   },
@@ -444,7 +459,7 @@ const styles = StyleSheet.create({
     gap: 10,
     paddingHorizontal: 16,
     paddingTop: 4,
-    paddingBottom: 120,
+    paddingBottom: 110,
   },
   itemCard: {
     width: '31.3%',
@@ -485,8 +500,6 @@ const styles = StyleSheet.create({
     color: '#4A3525',
     textAlign: 'center',
   },
-
-  // Preço e Bloqueio
   priceOverlay: {
     position: 'absolute',
     top: 0,
@@ -533,8 +546,6 @@ const styles = StyleSheet.create({
     fontWeight: '900',
     color: '#FFFFFF',
   },
-
-  // Status nos itens de Vestuário
   statusPill: {
     position: 'absolute',
     bottom: 5,
@@ -561,6 +572,31 @@ const styles = StyleSheet.create({
   },
   ownedText: {
     color: '#4C8262',
+  },
+  navText: {
+    fontSize: 10,
+    color: '#7A6E65',
+    fontWeight: '700',
+    marginTop: 1,
+  },
+  navTextActive: {
+    color: '#D97757',
+    fontWeight: '900',
+  },
+  centerPlayWrapper: {
+    position: 'absolute',
+    top: -18,
+    alignSelf: 'center',
+  },
+  centerPlayButton: {
+    width: 58,
+    height: 58,
+    borderRadius: 29,
+    backgroundColor: '#D97757',
+    borderWidth: 3,
+    borderColor: '#4A3B32',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

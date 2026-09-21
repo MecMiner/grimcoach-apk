@@ -8,6 +8,9 @@
     "newArchEnabled": true,
     "androidStatusBar": {
       "hidden": true
+    },
+    "android": {
+      "package": "com.anonymous.grimcoachapk"
     }
   }
-} 
+}

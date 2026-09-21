@@ -15,6 +15,11 @@ interface ProfileContextData {
 export const DEFAULT_PROFILE: ChildProfileData = {
   id: 'child_default_1',
   name: 'Jogador 1',
+  nickname: 'Jogador 1',
+  birthDate: 'Não informada',
+  accessCode: 'GRIM-1001',
+  createdAt: new Date().toISOString(),
+  avatarIcon: '👾',
   stars: 120,
   score: 0,
   playerLevel: 3,
@@ -35,7 +40,6 @@ export const DEFAULT_PROFILE: ChildProfileData = {
     detailKey: 'blueAntennaLarge',
   },
 };
-
 const ProfileContext = createContext<ProfileContextData>({} as ProfileContextData);
 
 export const ProfileProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
