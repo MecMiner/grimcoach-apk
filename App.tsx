@@ -21,6 +21,7 @@ import MemoryGameScreen from './src/screens/games/MemoryGameScreen';
 import BlinkMechanicScreen from './src/screens/games/BlinkMechanicScreen';
 import SmileMechanicScreen from './src/screens/games/SmileMechanicScreen';
 import SimonSaysMechanicScreen from './src/screens/games/SimonSaysMechanicScreen';
+import ImitateExpressionScreen from './src/screens/games/ImitateExpressionScreen';
 
 type AppFlowState = 'auth' | 'profiles' | 'game';
 
@@ -98,6 +99,8 @@ export default function App() {
       setActivePhase({ phaseId: 7, phaseKey: 'SmileMechanic', level: levelKey });
     } else if (phaseId === 8) {
       setActivePhase({ phaseId: 8, phaseKey: 'SimonSaysMechanic', level: levelKey });
+    } else if (phaseId === 9) {
+      setActivePhase({ phaseId: 9, phaseKey: 'ImitateExpression', level: levelKey });
     }
   };
 
@@ -124,6 +127,8 @@ export default function App() {
         return <SmileMechanicScreen level={activePhase.level} onBack={handleBack} />;
       case 'SimonSaysMechanic':
         return <SimonSaysMechanicScreen level={activePhase.level} onBack={handleBack} />;
+      case 'ImitateExpression':
+        return <ImitateExpressionScreen level={activePhase.level} onBack={handleBack} />;
       default:
         return null;
     }
