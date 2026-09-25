@@ -19,12 +19,14 @@ import ConnectExpressionsScreen from './src/screens/games/ConnectExpressionsScre
 import FindImpostorScreen from './src/screens/games/FindImpostorScreen';
 import MemoryGameScreen from './src/screens/games/MemoryGameScreen';
 import BlinkMechanicScreen from './src/screens/games/BlinkMechanicScreen';
+import SmileMechanicScreen from './src/screens/games/SmileMechanicScreen';
+import SimonSaysMechanicScreen from './src/screens/games/SimonSaysMechanicScreen';
 
 type AppFlowState = 'auth' | 'profiles' | 'game';
 
 export interface ActivePhaseState {
   phaseId: number;
-  phaseKey: string; // Ex: 'CompareExpressions'
+  phaseKey: string;
   level: LevelType;
 }
 
@@ -34,8 +36,6 @@ export default function App() {
   const [currentFlow, setCurrentFlow] = useState<AppFlowState>('auth');
   const [activeTab, setActiveTab] = useState<MainTabType>('mascot');
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
-
-  // Controla se há um minijogo em execução no momento
   const [activePhase, setActivePhase] = useState<ActivePhaseState | null>(null);
 
   useEffect(() => {
@@ -80,20 +80,52 @@ export default function App() {
     setCurrentFlow('game');
   };
 
-  // Disparado quando o usuário clica em um nível dentro de GameScreen
   const handleStartPhase = (phaseId: number, levelNumber: number) => {
+    const levelKey = `nivel${levelNumber}` as LevelType;
     if (phaseId === 1) {
-      setActivePhase({ phaseId: 1, phaseKey: 'CompareExpressions', level: `nivel${levelNumber}` as LevelType });
+      setActivePhase({ phaseId: 1, phaseKey: 'CompareExpressions', level: levelKey });
     } else if (phaseId === 2) {
-      setActivePhase({ phaseId: 2, phaseKey: 'SelectExpression', level: `nivel${levelNumber}` as LevelType });
+      setActivePhase({ phaseId: 2, phaseKey: 'SelectExpression', level: levelKey });
     } else if (phaseId === 3) {
-      setActivePhase({ phaseId: 3, phaseKey: 'ConnectExpressions', level: `nivel${levelNumber}` as LevelType });
+      setActivePhase({ phaseId: 3, phaseKey: 'ConnectExpressions', level: levelKey });
     } else if (phaseId === 4) {
-      setActivePhase({ phaseId: 4, phaseKey: 'FindImpostor', level: `nivel${levelNumber}` as LevelType });
-    }else if (phaseId === 5) {
-      setActivePhase({ phaseId: 5, phaseKey: 'MemoryGame', level: `nivel${levelNumber}` as LevelType });
-    }else if (phaseId === 6) {
-      setActivePhase({ phaseId: 5, phaseKey: 'BlinkMechanic', level: `nivel${levelNumber}` as LevelType });
+      setActivePhase({ phaseId: 4, phaseKey: 'FindImpostor', level: levelKey });
+    } else if (phaseId === 5) {
+      setActivePhase({ phaseId: 5, phaseKey: 'MemoryGame', level: levelKey });
+    } else if (phaseId === 6) {
+      setActivePhase({ phaseId: 6, phaseKey: 'BlinkMechanic', level: levelKey });
+    } else if (phaseId === 7) {
+      setActivePhase({ phaseId: 7, phaseKey: 'SmileMechanic', level: levelKey });
+    } else if (phaseId === 8) {
+      setActivePhase({ phaseId: 8, phaseKey: 'SimonSaysMechanic', level: levelKey });
+    }
+  };
+
+  // Renderizador limpo e seguro contra caracteres/nós de texto soltos
+  const renderActivePhase = () => {
+    if (!activePhase) return null;
+
+    const handleBack = () => setActivePhase(null);
+
+    switch (activePhase.phaseKey) {
+      case 'CompareExpressions':
+        return <CompareExpressionsScreen level={activePhase.level} onBack={handleBack} />;
+      case 'SelectExpression':
+        return <SelectExpressionScreen level={activePhase.level} onBack={handleBack} />;
+      case 'ConnectExpressions':
+        return <ConnectExpressionsScreen level={activePhase.level} onBack={handleBack} />;
+      case 'FindImpostor':
+        return <FindImpostorScreen level={activePhase.level} onBack={handleBack} />;
+      case 'MemoryGame':
+        return <MemoryGameScreen level={activePhase.level} onBack={handleBack} />;
+      case 'BlinkMechanic':
+        return <BlinkMechanicScreen level={activePhase.level} onBack={handleBack} />;
+      case 'SmileMechanic':
+        return <SmileMechanicScreen level={activePhase.level} onBack={handleBack} />;
+      case 'SimonSaysMechanic':
+        return <SimonSaysMechanicScreen level={activePhase.level} onBack={handleBack} />;
+      default:
+        return null;
     }
   };
 
@@ -108,12 +140,10 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <ProfileProvider>
-        {/* 1. Login do Responsável */}
         {currentFlow === 'auth' && (
           <LoginScreen onLoginSuccess={handleLoginSuccess} />
         )}
 
-        {/* 2. Seleção de Jogador */}
         {currentFlow === 'profiles' && (
           <ProfilesScreen
             onProfileSelected={handleProfileSelected}
@@ -121,51 +151,13 @@ export default function App() {
           />
         )}
 
-        {/* 3. Aplicação Principal */}
         {currentFlow === 'game' && (
           <View style={styles.gameContainer}>
-            {/* SE UMA FASE ESTIVER ATIVA: Renderiza o minijogo em tela cheia */}
             {activePhase !== null ? (
               <View style={styles.phaseFullscreen}>
-                {activePhase.phaseKey === 'CompareExpressions' && (
-                  <CompareExpressionsScreen
-                    level={activePhase.level}
-                    onBack={() => setActivePhase(null)}
-                  />
-                )}
-                {activePhase.phaseKey === 'SelectExpression' && (
-                  <SelectExpressionScreen
-                    level={activePhase.level}
-                    onBack={() => setActivePhase(null)}
-                  />
-                )}
-                {activePhase.phaseKey === 'ConnectExpressions' && (
-                  <ConnectExpressionsScreen
-                    level={activePhase.level}
-                    onBack={() => setActivePhase(null)}
-                  />
-                )}
-                {activePhase.phaseKey === 'FindImpostor' && (
-                  <FindImpostorScreen
-                    level={activePhase.level}
-                    onBack={() => setActivePhase(null)}
-                  />
-                )}
-                {activePhase.phaseKey === 'MemoryGame' && (
-                  <MemoryGameScreen
-                    level={activePhase.level}
-                    onBack={() => setActivePhase(null)}
-                  />
-                )}
-                {activePhase.phaseKey === 'BlinkMechanic' && (
-                  <BlinkMechanicScreen
-                    level={activePhase.level}
-                    onBack={() => setActivePhase(null)}
-                  />
-                )}
+                {renderActivePhase()}
               </View>
             ) : (
-              /* SE NENHUMA FASE ESTIVER ABERTA: Renderiza as 3 abas normais + Barra Inferior */
               <>
                 {activeTab === 'mascot' && (
                   <CustomizationScreen
@@ -177,7 +169,6 @@ export default function App() {
                 )}
                 {activeTab === 'rewards' && <RewardsScreen />}
 
-                {/* Menu persistente visível em qualquer uma das 3 abas */}
                 <BottomNavBar
                   currentTab={activeTab}
                   onSelectTab={(tab) => setActiveTab(tab)}

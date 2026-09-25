@@ -8,20 +8,25 @@
     "@react-native-community/netinfo": "12.0.1",
     "@react-navigation/native": "^7.4.1",
     "@react-navigation/native-stack": "^7.19.2",
-    "expo": "~57.0.24",
-    "expo-av": "^16.0.8",
+    "expo": "~57.0.25",
+    "expo-build-properties": "~57.0.22",
     "expo-camera": "~57.0.5",
-    "expo-face-detector": "^13.0.2",
+    "expo-font": "~57.0.4",
     "expo-haptics": "~57.0.3",
-    "expo-image-manipulator": "~57.0.19",
+    "expo-image-manipulator": "~57.0.20",
     "expo-status-bar": "~57.0.1",
+    "expo-video": "~57.0.5",
     "react": "19.2.3",
     "react-native": "0.86.3",
     "react-native-gesture-handler": "~2.32.0",
     "react-native-reanimated": "4.5.1",
     "react-native-safe-area-context": "~5.7.0",
     "react-native-screens": "~4.26.0",
-    "react-native-svg": "15.15.4"
+    "react-native-svg": "15.15.4",
+    "react-native-vision-camera": "^5.2.3",
+    "react-native-vision-camera-face-detector": "^2.1.0",
+    "react-native-worklets": "0.10.1",
+    "react-native-worklets-core": "^1.6.3"
   },
   "devDependencies": {
     "@types/react": "~19.2.2",
@@ -38,9 +43,21 @@
   "expo": {
     "plugins": [
       [
-        "expo-camera",
+        "react-native-vision-camera",
         {
-          "cameraPermission": "O GrimCoach precisa de acesso à câmara para rastrear as expressões faciais."
+          "cameraPermissionText": "Este aplicativo precisa de acesso à câmera para detectar seu rosto.",
+          "enableMicrophonePermission": false
+        },
+        "expo-build-properties",
+        {
+          "android": {
+            "compileSdkVersion": 35,
+            "targetSdkVersion": 35,
+            "buildToolsVersion": "35.0.0",
+            "extraGradleArguments": {
+              "android.aarMetadata.skip": "true"
+            }
+          }
         }
       ]
     ]

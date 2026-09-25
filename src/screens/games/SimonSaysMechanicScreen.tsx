@@ -31,63 +31,80 @@ import {
 } from '../../components/game';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
-const TOTAL_ROUNDS = 3;
-const TARGET_REPS = 3;
-const REQUIRED_HOLD_MS = 350;
+const TOTAL_ROUNDS = 5;
+const POINTS_PER_ROUND = 2;
+const REQUIRED_HOLD_MS = 400;
 
 const TUTORIAL_VIDEO_URL =
   'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4';
 
-export type BlinkCommandType = 'both' | 'left' | 'right';
+export type SimonCommandType =
+  | 'smile'
+  | 'blink_left'
+  | 'blink_right'
+  | 'smile_and_blink_left'
+  | 'smile_and_blink_right';
 
-interface BlinkCommandConfig {
-  type: BlinkCommandType;
+interface SimonCommandConfig {
+  type: SimonCommandType;
   title: string;
   instruction: string;
   icon: keyof typeof Ionicons.glyphMap;
   hintEmoji: string;
 }
 
-const COMMANDS: BlinkCommandConfig[] = [
+const COMMANDS: SimonCommandConfig[] = [
   {
-    type: 'both',
-    title: 'Pisque Ambos os Olhos',
-    instruction: 'Feche os dois olhos e segure um instante!',
-    icon: 'eye-off',
-    hintEmoji: '🙈',
+    type: 'smile',
+    title: 'O Chefinho Mandou:',
+    instruction: 'Dê um belo sorriso para a câmera!',
+    icon: 'happy',
+    hintEmoji: '😁',
   },
   {
-    type: 'left',
-    title: 'Pisque o Olho Esquerdo',
-    instruction: 'Feche o olho esquerdo (lado esquerdo da tela)!',
+    type: 'blink_left',
+    title: 'O Chefinho Mandou:',
+    instruction: 'Pisque apenas o olho esquerdo!',
     icon: 'arrow-back-circle',
     hintEmoji: '😜',
   },
   {
-    type: 'right',
-    title: 'Pisque o Olho Direito',
-    instruction: 'Feche o olho direito (lado direito da tela)!',
+    type: 'blink_right',
+    title: 'O Chefinho Mandou:',
+    instruction: 'Pisque apenas o olho direito!',
     icon: 'arrow-forward-circle',
     hintEmoji: '😉',
   },
+  {
+    type: 'smile_and_blink_left',
+    title: 'O Chefinho Mandou:',
+    instruction: 'Sorria E pisque o olho esquerdo ao mesmo tempo!',
+    icon: 'sparkles',
+    hintEmoji: '😜😁',
+  },
+  {
+    type: 'smile_and_blink_right',
+    title: 'O Chefinho Mandou:',
+    instruction: 'Sorria E pisque o olho direito ao mesmo tempo!',
+    icon: 'sparkles',
+    hintEmoji: '😉😁',
+  },
 ];
 
-export interface TelemetryRoundLog {
+export interface TelemetryRoundLogSimon {
   roundNumber: number;
-  commandType: BlinkCommandType;
-  targetReps: number;
-  completedReps: number;
+  commandType: SimonCommandType;
   startedAt: string;
   completedAt: string;
   durationSeconds: number;
   success: boolean;
 }
 
-export interface BlinkSessionExportPayload {
+export interface PhaseSimonSessionData {
   sessionMeta: {
     sessionId: string;
-    phaseId: 6;
-    phaseKey: 'BlinkMechanic';
+    phaseId: 8;
+    phaseKey: 'SimonSaysMechanic';
     level: LevelType;
     devicePlatform: string;
     startedAt: string;
@@ -97,19 +114,17 @@ export interface BlinkSessionExportPayload {
   metrics: {
     totalRounds: number;
     completedRounds: number;
-    totalExpectedReps: number;
-    totalCompletedReps: number;
+    pointsEarned: number;
     accuracyPercentage: number;
-    scoreEarned: number;
     averageResponseTimePerRoundSeconds: number;
   };
-  roundsDetail: TelemetryRoundLog[];
+  roundsDetail: TelemetryRoundLogSimon[];
 }
 
-interface BlinkMechanicScreenProps {
+interface SimonSaysMechanicScreenProps {
   level?: LevelType;
   onBack?: () => void;
-  onSaveSession?: (session: BlinkSessionExportPayload) => void;
+  onSaveSession?: (session: PhaseSimonSessionData) => void;
 }
 
 // -------------------------------------------------------------
@@ -121,11 +136,13 @@ const CameraStream = memo(
     onFacesDetected,
     faceDetectedAnim,
     holdingFeedbackAnim,
+    feedbackText,
   }: {
     device: any;
     onFacesDetected: (faces: Face[]) => void;
     faceDetectedAnim: Animated.Value;
     holdingFeedbackAnim: Animated.Value;
+    feedbackText: string;
   }) => (
     <View style={styles.cameraBox}>
       <Camera
@@ -141,16 +158,14 @@ const CameraStream = memo(
         onError={(error) => console.log('Camera error:', error)}
       />
 
-      {/* FEEDBACK VISUAL DE SUSTENTAÇÃO */}
       <Animated.View
         pointerEvents="none"
         style={[styles.holdingFeedbackOverlay, { opacity: holdingFeedbackAnim }]}
       >
-        <Ionicons name="timer-outline" size={26} color="#2ECC71" />
-        <Text style={styles.holdingFeedbackText}>A validar...</Text>
+        <Ionicons name="sparkles" size={20} color="#2ECC71" />
+        <Text style={styles.holdingFeedbackText}>{feedbackText}</Text>
       </Animated.View>
 
-      {/* GUIA DE CENTRALIZAÇÃO DO ROSTO */}
       <View pointerEvents="none" style={styles.faceGuideFrame}>
         <Animated.View
           style={[
@@ -173,10 +188,10 @@ const CameraStream = memo(
       </View>
     </View>
   ),
-  (prev, next) => prev.device?.id === next.device?.id
+  (prev, next) => prev.device?.id === next.device?.id && prev.feedbackText === next.feedbackText
 );
 
-export const BlinkMechanicScreen: React.FC<BlinkMechanicScreenProps> = ({
+export const SimonSaysMechanicScreen: React.FC<SimonSaysMechanicScreenProps> = ({
   level = 'nivel4',
   onBack,
   onSaveSession,
@@ -201,39 +216,36 @@ export const BlinkMechanicScreen: React.FC<BlinkMechanicScreenProps> = ({
     }
   };
 
-  // Estados principais do Jogo
+  // Estados principais
   const [currentRound, setCurrentRound] = useState(1);
-  const currentRoundRef = useRef(1); // TRAVA ATÔMICA DA RODADA
+  const currentRoundRef = useRef(1);
   currentRoundRef.current = currentRound;
 
-  const [currentCommand, setCurrentCommand] = useState<BlinkCommandConfig>(COMMANDS[0]);
-  const [repsRemaining, setRepsRemaining] = useState(TARGET_REPS);
+  const [currentCommand, setCurrentCommand] = useState<SimonCommandConfig>(COMMANDS[0]);
+  const currentCommandRef = useRef<SimonCommandType>(COMMANDS[0].type);
+
   const [isEvaluating, setIsEvaluating] = useState(false);
   const [score, setScore] = useState(0);
 
-  // Animações nativas para evitar re-render em cascata
+  // Animações nativas
   const faceDetectedAnim = useRef(new Animated.Value(0)).current;
   const holdingFeedbackAnim = useRef(new Animated.Value(0)).current;
-  const repBadgeScale = useRef(new Animated.Value(1)).current;
   const resultScale = useRef(new Animated.Value(0)).current;
   const shockwaveScale = useRef(new Animated.Value(0)).current;
   const shockwaveOpacity = useRef(new Animated.Value(1)).current;
 
   // Logs e Métricas de Exportação
   const [secondsElapsed, setSecondsElapsed] = useState(0);
-  const sessionIdRef = useRef<string>(`session_${Date.now()}`);
+  const sessionIdRef = useRef<string>(`session_simon_${Date.now()}`);
   const gameStartedAtRef = useRef<string>(new Date().toISOString());
   const roundStartedAtRef = useRef<string>(new Date().toISOString());
-  const roundsLogRef = useRef<TelemetryRoundLog[]>([]);
+  const roundsLogRef = useRef<TelemetryRoundLogSimon[]>([]);
 
-  // Refs de controle de ciclo de IA
+  // Refs de controle de ciclo
   const isExecutingRef = useRef<boolean>(false);
   const lastProcessedTimeRef = useRef<number>(0);
   const holdStartTimestampRef = useRef<number | null>(null);
-  const isTargetCompletedForCycleRef = useRef<boolean>(false);
-
-  const currentCommandRef = useRef<BlinkCommandType>(currentCommand.type);
-  currentCommandRef.current = currentCommand.type;
+  const isCommandCompletedForCycleRef = useRef<boolean>(false);
 
   // Modais de Controle
   const [isPaused, setIsPaused] = useState(false);
@@ -245,7 +257,7 @@ export const BlinkMechanicScreen: React.FC<BlinkMechanicScreenProps> = ({
   isPausedOrEvaluatingRef.current =
     isPaused || isEvaluating || isHowToPlayVisible || isExitWarningVisible;
 
-  // Interceptor do Botão Voltar do Android (Hardware / Gestos)
+  // Interceptor do Botão Voltar do Dispositivo
   const handleConfirmExit = useCallback(() => {
     setIsExitWarningVisible(false);
     setIsPaused(false);
@@ -269,7 +281,6 @@ export const BlinkMechanicScreen: React.FC<BlinkMechanicScreenProps> = ({
         return true;
       }
 
-      // Ao apertar voltar em jogo, abre o aviso de perda de pontos
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
       setIsPaused(false);
       setIsExitWarningVisible(true);
@@ -280,7 +291,7 @@ export const BlinkMechanicScreen: React.FC<BlinkMechanicScreenProps> = ({
     return () => backSubscription.remove();
   }, [isExitWarningVisible, isHowToPlayVisible, isVictoryModalVisible, onBack]);
 
-  // Cronômetro da partida
+  // Cronômetro
   useEffect(() => {
     if (isPaused || isVictoryModalVisible || isEvaluating || isHowToPlayVisible || isExitWarningVisible) {
       return;
@@ -289,67 +300,54 @@ export const BlinkMechanicScreen: React.FC<BlinkMechanicScreenProps> = ({
     return () => clearInterval(timer);
   }, [isPaused, isVictoryModalVisible, isEvaluating, isHowToPlayVisible, isExitWarningVisible]);
 
+  // Sorteia comando sem repetir o imediatamente anterior
   const setupNewRound = () => {
     setIsEvaluating(false);
     resultScale.setValue(0);
     shockwaveScale.setValue(0);
     shockwaveOpacity.setValue(1);
     holdingFeedbackAnim.setValue(0);
-    setRepsRemaining(TARGET_REPS);
     holdStartTimestampRef.current = null;
-    isTargetCompletedForCycleRef.current = false;
+    isCommandCompletedForCycleRef.current = false;
 
-    const nextCmd = COMMANDS[Math.floor(Math.random() * COMMANDS.length)];
+    const availableCommands = COMMANDS.filter(
+      (cmd) => cmd.type !== currentCommandRef.current
+    );
+    const nextCmd =
+      availableCommands.length > 0
+        ? availableCommands[Math.floor(Math.random() * availableCommands.length)]
+        : COMMANDS[Math.floor(Math.random() * COMMANDS.length)];
+
+    // ATUALIZA TANTO O ESTADO QUANTO A REF CORRESPONDENTE
+    currentCommandRef.current = nextCmd.type;
     setCurrentCommand(nextCmd);
     roundStartedAtRef.current = new Date().toISOString();
   };
 
   useEffect(() => {
-    sessionIdRef.current = `session_${Date.now()}`;
+    sessionIdRef.current = `session_simon_${Date.now()}`;
     gameStartedAtRef.current = new Date().toISOString();
     roundsLogRef.current = [];
     currentRoundRef.current = 1;
     setupNewRound();
   }, [level]);
 
-  const registerBlinkHit = useCallback(() => {
-    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-
-    Animated.sequence([
-      Animated.timing(repBadgeScale, { toValue: 1.4, duration: 110, useNativeDriver: true }),
-      Animated.spring(repBadgeScale, { toValue: 1, friction: 5, useNativeDriver: true }),
-    ]).start();
-
-    setRepsRemaining((prev) => {
-      const nextVal = prev - 1;
-      if (nextVal <= 0) {
-        triggerRoundCompletion();
-        return 0;
-      }
-      return nextVal;
-    });
-  }, []);
-
-  // -------------------------------------------------------------
-  // CONCLUSÃO DA RODADA (TRAVA SEGURA NA 3ª RODADA)
-  // -------------------------------------------------------------
+  // Conclusão da Rodada
   const triggerRoundCompletion = () => {
     setIsEvaluating(true);
     holdingFeedbackAnim.setValue(0);
     Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-    setScore((prev) => prev + 10);
+    setScore((prev) => prev + POINTS_PER_ROUND);
 
     const roundCompletedAt = new Date().toISOString();
     const duration = Number(
       ((Date.parse(roundCompletedAt) - Date.parse(roundStartedAtRef.current)) / 1000).toFixed(2)
     );
 
-    // Registra a telemetria desta rodada concluída
+    // Registra no histórico com o tipo exato e atual da rodada
     roundsLogRef.current.push({
       roundNumber: currentRoundRef.current,
-      commandType: currentCommand.type,
-      targetReps: TARGET_REPS,
-      completedReps: TARGET_REPS,
+      commandType: currentCommandRef.current,
       startedAt: roundStartedAtRef.current,
       completedAt: roundCompletedAt,
       durationSeconds: duration,
@@ -363,7 +361,6 @@ export const BlinkMechanicScreen: React.FC<BlinkMechanicScreenProps> = ({
     ]).start();
 
     setTimeout(() => {
-      // Se alcançou o total de rodadas estipulado (ex: 3), encerra imediatamente
       if (currentRoundRef.current >= TOTAL_ROUNDS) {
         finalizeSession();
       } else {
@@ -375,9 +372,7 @@ export const BlinkMechanicScreen: React.FC<BlinkMechanicScreenProps> = ({
     }, 1500);
   };
 
-  // -------------------------------------------------------------
-  // DETECÇÃO FACIAL OTIMIZADA COM DISPARO DA SUSTENTAÇÃO
-  // -------------------------------------------------------------
+  // Detecção Biométrica
   const handleFacesDetected = useCallback(
     (faces: Face[]) => {
       if (isPausedOrEvaluatingRef.current) return;
@@ -397,70 +392,75 @@ export const BlinkMechanicScreen: React.FC<BlinkMechanicScreenProps> = ({
 
         faceDetectedAnim.setValue(1);
         const face: any = faces[0];
+
         const leftProb = typeof face.leftEyeOpenProbability === 'number' ? face.leftEyeOpenProbability : 1;
         const rightProb = typeof face.rightEyeOpenProbability === 'number' ? face.rightEyeOpenProbability : 1;
+        const smileProb = typeof face.smilingProbability === 'number' ? face.smilingProbability : 0;
 
         const eyeScreenLeft = rightProb;
         const eyeScreenRight = leftProb;
+
         const closedThreshold = 0.40;
-        const openThreshold = 0.55;
+        const openThreshold = 0.60;
+        const smileThreshold = 0.65;
 
-        let isTargetClosed = false;
-        let isOppositeOpen = true;
+        const isSmiling = smileProb >= smileThreshold;
+        const isBlinkingLeft = eyeScreenLeft < closedThreshold && eyeScreenRight > openThreshold;
+        const isBlinkingRight = eyeScreenRight < closedThreshold && eyeScreenLeft > openThreshold;
 
+        let isValidPose = false;
         const cmd = currentCommandRef.current;
-        if (cmd === 'both') {
-          isTargetClosed = eyeScreenLeft < closedThreshold && eyeScreenRight < closedThreshold;
-        } else if (cmd === 'left') {
-          isTargetClosed = eyeScreenLeft < closedThreshold;
-          isOppositeOpen = eyeScreenRight > openThreshold;
-        } else if (cmd === 'right') {
-          isTargetClosed = eyeScreenRight < closedThreshold;
-          isOppositeOpen = eyeScreenLeft > openThreshold;
+
+        if (cmd === 'smile') {
+          isValidPose = isSmiling && eyeScreenLeft > openThreshold && eyeScreenRight > openThreshold;
+        } else if (cmd === 'blink_left') {
+          isValidPose = isBlinkingLeft;
+        } else if (cmd === 'blink_right') {
+          isValidPose = isBlinkingRight;
+        } else if (cmd === 'smile_and_blink_left') {
+          isValidPose = isSmiling && isBlinkingLeft;
+        } else if (cmd === 'smile_and_blink_right') {
+          isValidPose = isSmiling && isBlinkingRight;
         }
 
-        if (isTargetClosed && isOppositeOpen) {
+        if (isValidPose) {
           holdingFeedbackAnim.setValue(1);
           if (!holdStartTimestampRef.current) {
             holdStartTimestampRef.current = now;
           } else if (
             now - holdStartTimestampRef.current >= REQUIRED_HOLD_MS &&
-            !isTargetCompletedForCycleRef.current
+            !isCommandCompletedForCycleRef.current
           ) {
-            isTargetCompletedForCycleRef.current = true;
-            registerBlinkHit();
+            isCommandCompletedForCycleRef.current = true;
+            triggerRoundCompletion();
           }
         } else {
           holdingFeedbackAnim.setValue(0);
           holdStartTimestampRef.current = null;
-          isTargetCompletedForCycleRef.current = false;
+          isCommandCompletedForCycleRef.current = false;
         }
       } finally {
         isExecutingRef.current = false;
       }
     },
-    [registerBlinkHit, faceDetectedAnim, holdingFeedbackAnim]
+    [faceDetectedAnim, holdingFeedbackAnim]
   );
 
-  // -------------------------------------------------------------
-  // CONSOLIDAÇÃO E LOG DETALHADO DA PARTIDA
-  // -------------------------------------------------------------
+  // Finalização e Log
   const finalizeSession = () => {
     const finishedAt = new Date().toISOString();
-    const finalScore = score + 10;
-    const totalExpectedReps = TOTAL_ROUNDS * TARGET_REPS;
-    const totalCompletedReps = roundsLogRef.current.reduce((acc, r) => acc + r.completedReps, 0);
+    const finalScore = score + POINTS_PER_ROUND;
     const totalRoundsDuration = roundsLogRef.current.reduce((acc, r) => acc + r.durationSeconds, 0);
     const avgResponseTime =
       roundsLogRef.current.length > 0
         ? Number((totalRoundsDuration / roundsLogRef.current.length).toFixed(2))
         : 0;
 
-    const exportPayload: BlinkSessionExportPayload = {
+    const exportPayload: PhaseSimonSessionData = {
       sessionMeta: {
         sessionId: sessionIdRef.current,
-        phaseId: 6,
-        phaseKey: 'BlinkMechanic',
+        phaseId: 8,
+        phaseKey: 'SimonSaysMechanic',
         level,
         devicePlatform: Platform.OS,
         startedAt: gameStartedAtRef.current,
@@ -470,33 +470,29 @@ export const BlinkMechanicScreen: React.FC<BlinkMechanicScreenProps> = ({
       metrics: {
         totalRounds: TOTAL_ROUNDS,
         completedRounds: roundsLogRef.current.length,
-        totalExpectedReps,
-        totalCompletedReps,
-        accuracyPercentage: Math.round((totalCompletedReps / totalExpectedReps) * 100),
-        scoreEarned: finalScore,
+        pointsEarned: finalScore,
+        accuracyPercentage: 100,
         averageResponseTimePerRoundSeconds: avgResponseTime,
       },
       roundsDetail: roundsLogRef.current,
     };
 
-    // LOG ESTRUTURADO NO CONSOLE PRONTO PARA EXPORTAÇÃO
     console.log('\n======================================================');
-    console.log('🏆 [PARTIDA FINALIZADA COM SUCESSO - RELATÓRIO CLÍNICO]');
+    console.log('👑 [FASE O CHEFINHO MANDOU FINALIZADA]');
     console.log('======================================================');
     console.log(`🆔 ID da Sessão:      ${exportPayload.sessionMeta.sessionId}`);
-    console.log(`⏱️ Duração Total:     ${exportPayload.sessionMeta.totalSessionDurationSeconds} segundos`);
-    console.log(`⭐ Pontos Obtidos:    ${exportPayload.metrics.scoreEarned} pts`);
-    console.log(`🎯 Precisão:          ${exportPayload.metrics.accuracyPercentage}%`);
-    console.log(`⚡ Média por Rodada:  ${exportPayload.metrics.averageResponseTimePerRoundSeconds}s`);
+    console.log(`⏱️ Tempo Total:       ${exportPayload.sessionMeta.totalSessionDurationSeconds}s`);
+    console.log(`⭐ Pontos Totais:     ${exportPayload.metrics.pointsEarned} pts (2 pts/ronda)`);
+    console.log(`⚡ Média por Ronda:   ${exportPayload.metrics.averageResponseTimePerRoundSeconds}s`);
     console.log('------------------------------------------------------');
-    console.log('📋 DETALHES POR RODADA:');
+    console.log('📋 HISTÓRICO DE ORDENS DO CHEFINHO:');
     exportPayload.roundsDetail.forEach((round) => {
       console.log(
-        `   • Rodada ${round.roundNumber}: Comando [${round.commandType.toUpperCase()}] concluído em ${round.durationSeconds}s`
+        `   • Ronda ${round.roundNumber}: Ordem [${round.commandType.toUpperCase()}] cumprida em ${round.durationSeconds}s`
       );
     });
     console.log('------------------------------------------------------');
-    console.log('📦 JSON COMPLETO PARA EXPORTAÇÃO/API:');
+    console.log('📦 JSON COMPLETO DA PARTIDA:');
     console.log(JSON.stringify(exportPayload, null, 2));
     console.log('======================================================\n');
 
@@ -512,7 +508,7 @@ export const BlinkMechanicScreen: React.FC<BlinkMechanicScreenProps> = ({
     setCurrentRound(1);
     setScore(0);
     setSecondsElapsed(0);
-    sessionIdRef.current = `session_${Date.now()}`;
+    sessionIdRef.current = `session_simon_${Date.now()}`;
     gameStartedAtRef.current = new Date().toISOString();
     roundsLogRef.current = [];
     setupNewRound();
@@ -527,7 +523,7 @@ export const BlinkMechanicScreen: React.FC<BlinkMechanicScreenProps> = ({
           </View>
           <Text style={styles.permissionHeading}>Permissão da Câmara</Text>
           <Text style={styles.permissionExplanation}>
-            Precisamos de acesso à câmara frontal para o rastreio biométrico via IA!
+            O Chefinho precisa da câmara para conferir se você cumpre as ordens direitinho!
           </Text>
           <TouchableOpacity
             style={styles.grantButton}
@@ -554,7 +550,6 @@ export const BlinkMechanicScreen: React.FC<BlinkMechanicScreenProps> = ({
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        {/* CABEÇALHO MODULAR */}
         <GameHeader
           currentRound={currentRound}
           totalRounds={TOTAL_ROUNDS}
@@ -564,13 +559,13 @@ export const BlinkMechanicScreen: React.FC<BlinkMechanicScreenProps> = ({
           onPause={() => setIsPaused(true)}
         />
 
-        {/* ESPELHO DA CÂMARA */}
         <View style={styles.mirrorWrapper}>
           <CameraStream
             device={activeDevice}
             onFacesDetected={handleFacesDetected}
             faceDetectedAnim={faceDetectedAnim}
             holdingFeedbackAnim={holdingFeedbackAnim}
+            feedbackText="Perfeito! Segure a pose..."
           />
 
           <Animated.View
@@ -586,14 +581,13 @@ export const BlinkMechanicScreen: React.FC<BlinkMechanicScreenProps> = ({
               pointerEvents="none"
               style={[styles.resultPopBadgeCentered, { transform: [{ scale: resultScale }] }]}
             >
-              <Text style={styles.resultPopEmoji}>🎉✨</Text>
-              <Text style={styles.resultPopTitle}>PISCADA VALIDADA!</Text>
-              <Text style={styles.resultPopSub}>Excelente controlo facial! (+10 pts ⭐)</Text>
+              <Text style={styles.resultPopEmoji}>👑✨</Text>
+              <Text style={styles.resultPopTitle}>ORDEM CUMPRIDA!</Text>
+              <Text style={styles.resultPopSub}>O Chefinho aprovou! (+2 pts ⭐)</Text>
             </Animated.View>
           )}
         </View>
 
-        {/* CARTÃO DE COMANDO */}
         <View style={styles.actionCard}>
           <View style={styles.commandHeaderRow}>
             <View style={styles.commandIconBox}>
@@ -606,23 +600,18 @@ export const BlinkMechanicScreen: React.FC<BlinkMechanicScreenProps> = ({
           </View>
 
           <View style={styles.counterRow}>
-            <View style={styles.counterPill}>
-              <Text style={styles.counterPillLabel}>FALTAM PISCADAS:</Text>
-              <Animated.Text
-                style={[styles.counterPillValue, { transform: [{ scale: repBadgeScale }] }]}
-              >
-                {repsRemaining} {repsRemaining === 1 ? 'VEZ' : 'VEZES'}
-              </Animated.Text>
+            <View style={styles.targetPill}>
+              <Text style={styles.targetEmoji}>{currentCommand.hintEmoji}</Text>
+              <Text style={styles.targetPillText}>IMITE A POSE</Text>
             </View>
 
             <View style={styles.autoDetectionTag}>
-              <Ionicons name="hourglass-outline" size={14} color="#8A5300" />
-              <Text style={styles.autoDetectionTagText}>SEGURE ~1s</Text>
+              <Ionicons name="time-outline" size={15} color="#4A3B32" />
+              <Text style={styles.autoDetectionTagText}>SEGURE ~0.5s</Text>
             </View>
           </View>
         </View>
 
-        {/* MODAIS COMPARTILHADOS */}
         <PauseModal
           visible={isPaused}
           onResume={() => setIsPaused(false)}
@@ -637,7 +626,7 @@ export const BlinkMechanicScreen: React.FC<BlinkMechanicScreenProps> = ({
         <TutorialVideoModal
           visible={isHowToPlayVisible}
           videoUrl={TUTORIAL_VIDEO_URL}
-          instructionText="Feche o olho solicitado e segure fechado por cerca de 1 segundo até a IA validar o movimento!"
+          instructionText="Fique atento ao que o Chefinho mandar! Mostre um sorriso, pisque um dos olhos ou faça as duas coisas juntas e segure a pose até a validação!"
           onClose={() => setIsHowToPlayVisible(false)}
         />
 
@@ -651,8 +640,8 @@ export const BlinkMechanicScreen: React.FC<BlinkMechanicScreenProps> = ({
         <VictoryModal
           visible={isVictoryModalVisible}
           score={score}
-          title="Controlo Facial de Mestre!"
-          subtitle="Sensacional! Concluiu os desafios de piscadas com precisão biométrica!"
+          title="Obediência Nota 10!"
+          subtitle="Excelente! Seguiu todas as ordens do Chefinho com reflexo e expressividade!"
           onContinue={() => {
             setIsVictoryModalVisible(false);
             onBack?.();
@@ -760,6 +749,7 @@ const styles = StyleSheet.create({
   resultPopEmoji: { fontSize: 34 },
   resultPopTitle: { color: '#FFFFFF', fontWeight: '900', fontSize: 17, marginTop: 4, textAlign: 'center' },
   resultPopSub: { color: '#FDF7E7', fontWeight: '900', fontSize: 13, marginTop: 3, textAlign: 'center' },
+
   actionCard: {
     backgroundColor: '#FFFFFF',
     borderWidth: 3,
@@ -786,20 +776,20 @@ const styles = StyleSheet.create({
   commandTitle: { fontSize: 16, fontWeight: '900', color: '#4A3B32' },
   commandSubtitle: { fontSize: 12, fontWeight: '700', color: '#6B5A4E', marginTop: 2 },
   counterRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', gap: 10 },
-  counterPill: {
+  targetPill: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
+    gap: 8,
     backgroundColor: '#FDF7E7',
     borderWidth: 2,
     borderColor: '#F39C12',
-    paddingHorizontal: 12,
+    paddingHorizontal: 14,
     paddingVertical: 8,
     borderRadius: 14,
     flex: 1,
   },
-  counterPillLabel: { fontSize: 11, fontWeight: '900', color: '#8C7A6B' },
-  counterPillValue: { fontSize: 15, fontWeight: '900', color: '#8A5300' },
+  targetEmoji: { fontSize: 18 },
+  targetPillText: { fontSize: 13, fontWeight: '900', color: '#8A5300' },
   autoDetectionTag: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -812,6 +802,7 @@ const styles = StyleSheet.create({
     borderRadius: 14,
   },
   autoDetectionTagText: { fontSize: 11, fontWeight: '900', color: '#4A3B32' },
+
   permissionCardContainer: { flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 24 },
   permissionIconBadge: {
     width: 90,
@@ -843,4 +834,4 @@ const styles = StyleSheet.create({
   grantButtonText: { color: '#FFFFFF', fontWeight: '900', fontSize: 15 },
 });
 
-export default BlinkMechanicScreen;
+export default SimonSaysMechanicScreen;
